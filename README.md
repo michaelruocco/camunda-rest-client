@@ -1,14 +1,14 @@
 # Library Template
 
-[![Build](https://github.com/michaelruocco/library-template/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/library-template/actions)
-[![codecov](https://codecov.io/gh/michaelruocco/library-template/branch/master/graph/badge.svg?token=FWDNP534O7)](https://codecov.io/gh/michaelruocco/library-template)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/272889cf707b4dcb90bf451392530794)](https://www.codacy.com/gh/michaelruocco/library-template/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/library-template&amp;utm_campaign=Badge_Grade)
-[![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/library-template?branch=master)](https://bettercodehub.com/)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_library-template&metric=ncloc)](https://sonarcloud.io/dashboard?id=michaelruocco_library-template)
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.michaelruocco/library-template.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.michaelruocco%22%20AND%20a:%22library-template%22)
+[![Build](https://github.com/michaelruocco/camunda-rest-client/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/camunda-rest-client/actions)
+[![codecov](https://codecov.io/gh/michaelruocco/camunda-rest-client/branch/master/graph/badge.svg?token=FWDNP534O7)](https://codecov.io/gh/michaelruocco/camunda-rest-client)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/272889cf707b4dcb90bf451392530794)](https://www.codacy.com/gh/michaelruocco/camunda-rest-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/camunda-rest-client&amp;utm_campaign=Badge_Grade)
+[![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/camunda-rest-client?branch=master)](https://bettercodehub.com/)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=ncloc)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.michaelruocco/camunda-rest-client.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.michaelruocco%22%20AND%20a:%22camunda-rest-client%22)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview

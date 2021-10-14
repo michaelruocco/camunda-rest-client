@@ -92,7 +92,7 @@ java {
     withSourcesJar()
 }
 
-def gitUrl = "https://github.com/michaelruocco/library-template"
+def gitUrl = "https://github.com/michaelruocco/camunda-rest-client"
 def pomConfig = {
     licenses {
         license {
