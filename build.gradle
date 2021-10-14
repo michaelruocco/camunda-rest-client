@@ -1,0 +1,179 @@
+plugins {
+    id "java-library"
+    id "jacoco"
+    id "maven-publish"
+    id "signing"
+    id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
+    id "com.diffplug.spotless" version "5.16.0"
+    id "com.github.ben-manes.versions" version "0.39.0"
+    id "pl.allegro.tech.build.axion-release" version "1.13.3"
+    id "org.sonarqube" version "3.3"
+    id "com.adarshr.test-logger" version "3.0.0"
+    id "nebula.lint" version "17.2.3"
+}
+
+group "com.github.michaelruocco"
+
+ext {
+    slf4jVersion = "1.7.32"
+    lombokVersion = "1.18.20"
+
+    junitVersion = "5.8.1"
+}
+
+scmVersion {
+    versionCreator "versionWithBranch"
+    tag {
+        prefix = "${name}-"
+    }
+}
+project.version = scmVersion.version
+
+repositories {
+    mavenCentral()
+}
+
+gradleLint {
+    rules = ['all-dependency']
+    alwaysRun = false
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:3.21.0"
+    testImplementation "org.mockito:mockito-core:3.12.4"
+}
+
+javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "debug"
+}
+
+testlogger {
+    theme 'mocha'
+    showStandardStreams true
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    dependsOn test
+    sourceSets sourceSets.main
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+    }
+}
+
+project.tasks["sonarqube"].dependsOn jacocoTestReport
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "michaelruocco"
+        property "sonar.projectKey", "michaelruocco_${name}"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/report.xml"
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+def gitUrl = "https://github.com/michaelruocco/library-template"
+def pomConfig = {
+    licenses {
+        license {
+            name "MIT License"
+            url "https://opensource.org/licenses/MIT"
+            distribution "repo"
+        }
+    }
+
+    developers {
+        developer {
+            id "mruoc"
+            name "Michael Ruocco"
+            email "michael.ruocco@hotmail.com"
+        }
+    }
+
+    scm {
+        url gitUrl
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username = System.getenv("OSSRH_USERNAME")
+            password = System.getenv("OSSRH_PASSWORD")
+        }
+    }
+}
+
+publishing {
+    publications {
+        lib(MavenPublication) {
+            from components.java
+            pom.withXml {
+                def root = asNode()
+                root.appendNode("description", "Template repo to speed up creating new library projects")
+                root.appendNode("name", project.name)
+                root.appendNode("url", gitUrl)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = System.getenv("OSSRH_PGP_SECRET_KEY")
+    def signingPassword = System.getenv("OSSRH_PGP_SECRET_KEY_PASSWORD")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.lib
+}
+signLibPublication.enabled = gradle.startParameter.taskNames.contains("publishToSonatype")
+
+spotless {
+    java {
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        indentWithSpaces(4)
+        endWithNewline()
+
+        replace 'Not enough space after if', 'if(', 'if ('
+        replaceRegex 'Too much space after if', 'if +\\(', 'if ('
+
+        replace 'Not enough space after for', 'for(', 'for ('
+        replaceRegex 'Too much space after for', 'for +\\(', 'for ('
+
+        replace 'Not enough space after while', 'while(', 'while ('
+        replaceRegex 'Too much space after while', 'while +\\(', 'while ('
+    }
+}
+
+dependencyUpdates.resolutionStrategy {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            boolean rejected = ["alpha", "beta", "rc", "cr", "m", "preview"].any { qualifier ->
+                selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+            }
+            if (rejected) {
+                selection.reject("Release candidate")
+            }
+        }
+    }
+}
