@@ -43,14 +43,14 @@ jobs:
         run: ./gradlew dependencyUpdates
 
       - name: Build
-        run: ./gradlew clean spotlessCheck lintGradle assemble
+        run: ./gradlew clean spotlessCheck assemble
 
       - name: Test
         run: ./gradlew test
 
       - name: Integration Test
         run: ./gradlew integrationTest
-        
+
       - name: Sonar Analysis
         env:
           GITHUB_TOKEN: ${{ github.token }}
