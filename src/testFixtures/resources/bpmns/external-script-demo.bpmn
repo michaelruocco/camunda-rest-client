@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_05x4ve5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
-  <bpmn:process id="demo-external-process" name="demo-external-process" isExecutable="true">
-    <bpmn:startEvent id="external-demo-start" name="external-demo-start">
+  <bpmn:process id="external-script-demo-process" name="external-script-demo-process" isExecutable="true">
+    <bpmn:startEvent id="external-script-demo-start" name="external-script-demo-start">
       <bpmn:outgoing>Flow_0gwa6yn</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0gwa6yn" sourceRef="external-demo-start" targetRef="demo-external-script" />
-    <bpmn:scriptTask id="demo-external-script" name="demo-external-script" scriptFormat="groovy" camunda:resource="deployment://external-demo.groovy">
+    <bpmn:sequenceFlow id="Flow_0gwa6yn" sourceRef="external-script-demo-start" targetRef="external-script" />
+    <bpmn:scriptTask id="external-script" name="external-script" scriptFormat="groovy" camunda:resource="deployment://external-script.groovy">
       <bpmn:incoming>Flow_0gwa6yn</bpmn:incoming>
       <bpmn:outgoing>Flow_0f5ciqr</bpmn:outgoing>
     </bpmn:scriptTask>
-    <bpmn:endEvent id="external-demo-end" name="external-demo-end">
+    <bpmn:endEvent id="external-script-demo-end" name="external-script-demo-end">
       <bpmn:incoming>Flow_0f5ciqr</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0f5ciqr" sourceRef="demo-external-script" targetRef="external-demo-end" />
+    <bpmn:sequenceFlow id="Flow_0f5ciqr" sourceRef="external-script" targetRef="external-script-demo-end" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="demo-external-process">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="external-script-demo-process">
       <bpmndi:BPMNEdge id="Flow_0f5ciqr_di" bpmnElement="Flow_0f5ciqr">
         <di:waypoint x="370" y="117" />
         <di:waypoint x="432" y="117" />
@@ -24,19 +24,19 @@
         <di:waypoint x="215" y="117" />
         <di:waypoint x="270" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="external-demo-start">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="external-script-demo-start">
         <dc:Bounds x="179" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="161" y="142" width="74" height="27" />
+          <dc:Bounds x="162" y="142" width="73" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0gadz11_di" bpmnElement="demo-external-script">
+      <bpmndi:BPMNShape id="Activity_0gadz11_di" bpmnElement="external-script">
         <dc:Bounds x="270" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1gfj4hp_di" bpmnElement="external-demo-end">
+      <bpmndi:BPMNShape id="Event_1gfj4hp_di" bpmnElement="external-script-demo-end">
         <dc:Bounds x="432" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="414" y="142" width="74" height="27" />
+          <dc:Bounds x="415" y="142" width="73" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>

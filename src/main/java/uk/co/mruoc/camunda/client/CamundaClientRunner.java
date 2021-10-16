@@ -14,7 +14,7 @@ public class CamundaClientRunner {
     public static void main(String[] args) {
         var client = new CamundaClient("http://localhost:8080");
 
-        var directory = Path.of("/Users/michaelruocco/git/github/camunda-spring-boot-demo/bpmns/");
+        var directory = Path.of("/Users/michaelruocco/git/github/camunda-rest-client/bpmns/");
         var inlineRequest = CreateDeploymentRequest.builder()
                 .deploymentName("inline-demo-deployment")
                 .deploymentSource("local")
