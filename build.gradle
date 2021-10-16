@@ -63,21 +63,22 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0"
 
     testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.assertj:assertj-core:3.21.0"
-    //testImplementation "org.mockito:mockito-core:4.0.0"
+    testImplementation "net.javacrumbs.json-unit:json-unit-assertj:2.28.0"
 
     integrationTestCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     integrationTestAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     integrationTestImplementation "org.testcontainers:junit-jupiter:1.15.3"
-    integrationTestImplementation "org.awaitility:awaitility:4.1.0"
     integrationTestImplementation sourceSets.testFixtures.output
 
     testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesImplementation "com.github.michaelruocco:file-loader:6.0.1"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')

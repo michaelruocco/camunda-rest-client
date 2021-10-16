@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.deployment;
+package uk.co.mruoc.camunda.client.deploy;
 
 import lombok.Builder;
 import lombok.Data;

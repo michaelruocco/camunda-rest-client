@@ -1,0 +1,35 @@
+{
+  "links": [
+    {
+      "method": "GET",
+      "href": "http://localhost:55062/engine-rest/deployment/27664029-2e70-11ec-8938-0242ac110003",
+      "rel": "self"
+    }
+  ],
+  "id": "27664029-2e70-11ec-8938-0242ac110003",
+  "name": "inline-script-demo-deployment",
+  "source": "local",
+  "deploymentTime": "2021-10-16T10:59:37.387+0000",
+  "tenantId": null,
+  "deployedProcessDefinitions": {
+    "276cf6eb-2e70-11ec-8938-0242ac110003": {
+      "id": "276cf6eb-2e70-11ec-8938-0242ac110003",
+      "key": "inline-script-demo-process",
+      "category": "http://bpmn.io/schema/bpmn",
+      "description": null,
+      "name": "inline-script-demo-process",
+      "version": 1,
+      "resource": "inline-script-demo.bpmn",
+      "deploymentId": "27664029-2e70-11ec-8938-0242ac110003",
+      "diagram": null,
+      "suspended": false,
+      "tenantId": null,
+      "versionTag": null,
+      "historyTimeToLive": null,
+      "startableInTasklist": true
+    }
+  },
+  "deployedCaseDefinitions": null,
+  "deployedDecisionDefinitions": null,
+  "deployedDecisionRequirementsDefinitions": null
+}

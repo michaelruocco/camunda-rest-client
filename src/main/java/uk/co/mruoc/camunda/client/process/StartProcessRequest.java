@@ -14,7 +14,7 @@ import java.util.Collection;
 @Data
 public class StartProcessRequest {
 
-    private final String processKey;
+    private final String processDefinitionKey;
     private final Collection<Variable> variables;
     private final String businessKey;
 

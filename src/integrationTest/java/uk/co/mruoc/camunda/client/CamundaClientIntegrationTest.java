@@ -1,17 +1,18 @@
 package uk.co.mruoc.camunda.client;
 
-import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import uk.co.mruoc.camunda.client.deployment.CreateDeploymentRequest;
-import uk.co.mruoc.camunda.client.deployment.StartProcessRequestMother;
+import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest;
+import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse;
+import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
+import uk.co.mruoc.camunda.client.process.StartProcessResponse;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
-import static uk.co.mruoc.camunda.client.deployment.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
-import static uk.co.mruoc.camunda.client.deployment.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
+import static org.assertj.core.api.Assertions.assertThat;
+import static uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
 
 @Testcontainers
 public class CamundaClientIntegrationTest {
@@ -30,25 +31,24 @@ public class CamundaClientIntegrationTest {
     void shouldCreateDeployment() {
         CreateDeploymentRequest request = buildInlineScriptDeploymentRequest();
 
-        ThrowingCallable call = () -> client.createDeployment(request);
+        CreateDeploymentResponse response = client.createDeployment(request);
 
-        assertThatCode(call).doesNotThrowAnyException();
+        assertThat(response.getDeployedProcessDefinitions()).hasSize(1);
     }
 
     @Test
     void shouldStartProcess() {
-        givenBpmnIsDeployed();
-        //TODO get returned process key of deployment and pass into start process request
-        StartProcessRequest request = StartProcessRequestMother.build();
+        String processDefinitionKey = givenBpmnIsDeployed();
+        StartProcessRequest request = StartProcessRequestMother.withDefinitionProcessKey(processDefinitionKey);
 
-        ThrowingCallable call = () -> client.startProcess(request);
+        StartProcessResponse response = client.startProcess(request);
 
-        assertThatCode(call).doesNotThrowAnyException();
+        assertThat(response.getDefinitionId()).isNotNull();
     }
 
-    private static void givenBpmnIsDeployed() {
-        client.createDeployment(buildExternalScriptDeploymentRequest());
-        //TODO return process key of deployment
+    private static String givenBpmnIsDeployed() {
+        CreateDeploymentResponse response = client.createDeployment(buildExternalScriptDeploymentRequest());
+        return response.getFirstDeployedProcessDefinitionKey();
     }
 
 }

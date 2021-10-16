@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.deployment;
+package uk.co.mruoc.camunda.client.deploy;
 
 import com.github.mizosoft.methanol.MultipartBodyPublisher;
 import lombok.RequiredArgsConstructor;

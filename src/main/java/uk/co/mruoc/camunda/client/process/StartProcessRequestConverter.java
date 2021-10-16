@@ -28,7 +28,7 @@ public class StartProcessRequestConverter implements RequestConverter {
 
     private HttpRequest toHttpRequest(StartProcessRequest request) {
         HttpRequest.BodyPublisher body = toBody(request);
-        String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessKey());
+        String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessDefinitionKey());
         return HttpRequest.newBuilder()
                 .header("Content-Type", "application/json")
                 .uri(URI.create(uri))
