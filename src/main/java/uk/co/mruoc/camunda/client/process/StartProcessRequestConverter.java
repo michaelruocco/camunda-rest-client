@@ -2,6 +2,8 @@ package uk.co.mruoc.camunda.client.process;
 
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;
+import uk.co.mruoc.camunda.client.header.HeaderPopulator;
+import uk.co.mruoc.camunda.client.header.JsonContentTypePopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 import java.net.URI;
@@ -13,6 +15,11 @@ public class StartProcessRequestConverter implements RequestConverter {
 
     private final String baseUri;
     private final JsonConverter jsonConverter;
+    private final HeaderPopulator headerPopulator;
+
+    public StartProcessRequestConverter(String baseUri, JsonConverter jsonConverter) {
+        this(baseUri, jsonConverter, defaultHeaderPopulator());
+    }
 
     @Override
     public Optional<HttpRequest> apply(Object object) {
@@ -29,15 +36,19 @@ public class StartProcessRequestConverter implements RequestConverter {
     private HttpRequest toHttpRequest(StartProcessRequest request) {
         HttpRequest.BodyPublisher body = toBody(request);
         String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessDefinitionKey());
-        return HttpRequest.newBuilder()
-                .header("Content-Type", "application/json")
-                .uri(URI.create(uri))
+        HttpRequest.Builder builder = HttpRequest.newBuilder();
+        headerPopulator.populate(builder);
+        return builder.uri(URI.create(uri))
                 .POST(body)
                 .build();
     }
 
     public HttpRequest.BodyPublisher toBody(StartProcessRequest request) {
         return HttpRequest.BodyPublishers.ofString(jsonConverter.toJson(request));
+    }
+
+    private static HeaderPopulator defaultHeaderPopulator() {
+        return new JsonContentTypePopulator();
     }
 
 }

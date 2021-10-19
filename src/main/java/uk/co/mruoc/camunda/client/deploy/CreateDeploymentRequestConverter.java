@@ -3,6 +3,8 @@ package uk.co.mruoc.camunda.client.deploy;
 import com.github.mizosoft.methanol.MultipartBodyPublisher;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;
+import uk.co.mruoc.camunda.client.header.HeaderPopulator;
+import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -14,6 +16,11 @@ import java.util.Optional;
 public class CreateDeploymentRequestConverter implements RequestConverter {
 
     private final String baseUri;
+    private final HeaderPopulator headerPopulator;
+
+    public CreateDeploymentRequestConverter(String baseUri) {
+        this(baseUri, defaultHeaderPopulator());
+    }
 
     @Override
     public Optional<HttpRequest> apply(Object object) {
@@ -29,8 +36,9 @@ public class CreateDeploymentRequestConverter implements RequestConverter {
 
     private HttpRequest toHttpRequest(CreateDeploymentRequest request) {
         MultipartBodyPublisher body = toBody(request);
-        return HttpRequest.newBuilder()
-                .header("Content-Type", body.mediaType().toString())
+        HttpRequest.Builder builder = HttpRequest.newBuilder();
+        headerPopulator.populate(builder);
+        return builder.header("Content-Type", body.mediaType().toString())
                 .uri(URI.create(String.format("%s/engine-rest/deployment/create", baseUri)))
                 .POST(body)
                 .build();
@@ -53,6 +61,10 @@ public class CreateDeploymentRequestConverter implements RequestConverter {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    private static HeaderPopulator defaultHeaderPopulator() {
+        return new NoopHeaderPopulator();
     }
 
 }
