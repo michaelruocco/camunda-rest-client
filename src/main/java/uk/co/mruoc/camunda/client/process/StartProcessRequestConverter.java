@@ -3,7 +3,7 @@ package uk.co.mruoc.camunda.client.process;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
-import uk.co.mruoc.camunda.client.header.JsonContentTypePopulator;
+import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 import java.net.URI;
@@ -38,7 +38,8 @@ public class StartProcessRequestConverter implements RequestConverter {
         String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessDefinitionKey());
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        return builder.uri(URI.create(uri))
+        return builder.header("Content-Type", "application/json")
+                .uri(URI.create(uri))
                 .POST(body)
                 .build();
     }
@@ -48,7 +49,7 @@ public class StartProcessRequestConverter implements RequestConverter {
     }
 
     private static HeaderPopulator defaultHeaderPopulator() {
-        return new JsonContentTypePopulator();
+        return new NoopHeaderPopulator();
     }
 
 }
