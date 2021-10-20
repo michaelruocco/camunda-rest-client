@@ -8,9 +8,12 @@
     <bpmn:scriptTask id="inline-script" name="inline-script" scriptFormat="groovy">
       <bpmn:incoming>Flow_0gwa6yn</bpmn:incoming>
       <bpmn:outgoing>Flow_0f5ciqr</bpmn:outgoing>
-      <bpmn:script>String input = execution.getVariable("input")
+      <bpmn:script>String input = execution.getVariable("inputString")
 String output = new StringBuilder(input).reverse()
-execution.setVariable("output", output)</bpmn:script>
+execution.setVariable("outputString", output)
+
+Long count = execution.getVariable("inputLong") + 1
+execution.setVariable("outputLong", count)</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:endEvent id="inline-script-demo-end" name="inline-script-demo-end">
       <bpmn:incoming>Flow_0f5ciqr</bpmn:incoming>
