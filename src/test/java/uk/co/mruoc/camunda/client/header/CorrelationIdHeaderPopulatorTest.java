@@ -2,10 +2,10 @@ package uk.co.mruoc.camunda.client.header;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.UUID;
 
-import static java.net.http.HttpRequest.newBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -45,6 +45,10 @@ class CorrelationIdHeaderPopulatorTest {
         assertThat(id1)
                 .isNotEmpty()
                 .isNotEqualTo(id2);
+    }
+
+    private static HttpRequest.Builder newBuilder() {
+        return HttpRequest.newBuilder().uri(URI.create("http://localhost:8080"));
     }
 
     private static String extractCorrelationId(HttpRequest.Builder builder) {
