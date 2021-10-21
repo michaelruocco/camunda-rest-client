@@ -12,6 +12,10 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Optional;
 
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.CONTENT_TYPE_NAME;
+
 @RequiredArgsConstructor
 public class CreateDeploymentRequestConverter implements RequestConverter {
 
@@ -38,7 +42,8 @@ public class CreateDeploymentRequestConverter implements RequestConverter {
         MultipartBodyPublisher body = toBody(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        return builder.header("Content-Type", body.mediaType().toString())
+        return builder.header(CONTENT_TYPE_NAME, body.mediaType().toString())
+                .header(ACCEPT_NAME, APPLICATION_JSON)
                 .uri(URI.create(String.format("%s/engine-rest/deployment/create", baseUri)))
                 .POST(body)
                 .build();

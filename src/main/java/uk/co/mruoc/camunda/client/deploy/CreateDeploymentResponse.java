@@ -1,6 +1,5 @@
 package uk.co.mruoc.camunda.client.deploy;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Builder;
@@ -22,7 +21,6 @@ public class CreateDeploymentResponse {
     private final UUID id;
     private final String name;
     private final String source;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS+/-xxxx")
     private final OffsetDateTime deploymentTime;
     private final String tenantId;
     private final Collection<ProcessDefinition> deployedProcessDefinitions;

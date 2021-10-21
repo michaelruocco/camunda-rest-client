@@ -2,6 +2,7 @@ package uk.co.mruoc.camunda.client;
 
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestConverter;
+import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
 
@@ -22,7 +23,8 @@ public class CompositeRequestConverter {
     private static Collection<RequestConverter> buildConverters(String baseUri, JsonConverter jsonConverter) {
         return Arrays.asList(
                 new StartProcessRequestConverter(baseUri, jsonConverter),
-                new CreateDeploymentRequestConverter(baseUri)
+                new CreateDeploymentRequestConverter(baseUri),
+                new GetDeploymentsRequestConverter(baseUri)
         );
     }
 

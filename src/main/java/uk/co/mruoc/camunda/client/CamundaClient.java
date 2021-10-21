@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse;
+import uk.co.mruoc.camunda.client.deploy.GetDeploymentsResponse;
+import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
 import uk.co.mruoc.json.JsonConverter;
@@ -35,6 +37,12 @@ public class CamundaClient {
         HttpRequest httpRequest = requestConverter.toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, CreateDeploymentResponse.class);
+    }
+
+    public GetDeploymentsResponse getDeployments(GetDeploymentsRequest request) {
+        HttpRequest httpRequest = requestConverter.toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        return responseConverter.toTypeOrThrowError(response, GetDeploymentsResponse.class);
     }
 
     public StartProcessResponse startProcess(StartProcessRequest request) {

@@ -10,6 +10,10 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Optional;
 
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.CONTENT_TYPE_NAME;
+
 @RequiredArgsConstructor
 public class StartProcessRequestConverter implements RequestConverter {
 
@@ -38,7 +42,8 @@ public class StartProcessRequestConverter implements RequestConverter {
         String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessDefinitionKey());
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        return builder.header("Content-Type", "application/json")
+        return builder.header(CONTENT_TYPE_NAME, APPLICATION_JSON)
+                .header(ACCEPT_NAME, APPLICATION_JSON)
                 .uri(URI.create(uri))
                 .POST(body)
                 .build();

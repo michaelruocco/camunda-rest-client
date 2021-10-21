@@ -6,6 +6,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse;
+import uk.co.mruoc.camunda.client.deploy.GetDeploymentsResponse;
+import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequest;
+import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
@@ -15,7 +18,7 @@ import static uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestMother.bu
 import static uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
 
 @Testcontainers
-public class CamundaClientIntegrationTest {
+class CamundaClientIntegrationTest {
 
     @Container
     public static final LocalCamunda CAMUNDA = new LocalCamunda();
@@ -44,6 +47,16 @@ public class CamundaClientIntegrationTest {
         StartProcessResponse response = client.startProcess(request);
 
         assertThat(response.getDefinitionId()).isNotNull();
+    }
+
+    @Test
+    void shouldGetDeployments() {
+        givenBpmnIsDeployed();
+        GetDeploymentsRequest request = GetDeploymentsRequestMother.empty();
+
+        GetDeploymentsResponse response = client.getDeployments(request);
+
+        assertThat(response.getDeployments()).hasSize(3);
     }
 
     private static String givenBpmnIsDeployed() {
