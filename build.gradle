@@ -49,6 +49,7 @@ testSets {
 }
 
 configurations {
+    testImplementation.extendsFrom testFixturesImplementation
     integrationTestImplementation.extendsFrom testFixturesImplementation
 }
 
@@ -75,12 +76,14 @@ dependencies {
 
     integrationTestCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     integrationTestAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    integrationTestImplementation "org.testcontainers:junit-jupiter:1.16.1"
+    integrationTestImplementation "org.testcontainers:junit-jupiter:1.16.2"
     integrationTestImplementation sourceSets.testFixtures.output
 
     testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testFixturesImplementation "com.github.michaelruocco:file-loader:6.0.1"
+    testFixturesImplementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    testFixturesImplementation "commons-io:commons-io:2.11.0"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')

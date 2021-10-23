@@ -2,7 +2,6 @@ package uk.co.mruoc.camunda.client;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse;
 import uk.co.mruoc.camunda.client.deploy.GetDeploymentsResponse;
@@ -17,7 +16,6 @@ import java.net.http.HttpResponse;
 
 @Builder
 @RequiredArgsConstructor
-@Slf4j
 public class CamundaClient {
 
     private final String baseUri;

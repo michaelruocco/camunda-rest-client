@@ -10,6 +10,7 @@ import java.util.Optional;
 @Builder
 @Data
 public class CreateDeploymentRequest {
+
     private final String deploymentName;
     private final boolean enableDuplicateFiltering;
     private final boolean deployChangedOnly;
@@ -18,8 +19,14 @@ public class CreateDeploymentRequest {
     @Builder.Default
     private final Collection<Resource> resources = Collections.emptyList();
 
+    private final String overrideBaseUri;
+
     public Optional<String> getTenantId() {
         return Optional.ofNullable(tenantId);
+    }
+
+    public Optional<String> getOverrideBaseUri() {
+        return Optional.ofNullable(overrideBaseUri);
     }
 
 }

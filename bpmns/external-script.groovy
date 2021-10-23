@@ -1,5 +1,3 @@
-package bpmns
-
 String input = execution.getVariable("inputString")
 String output = new StringBuilder(input).reverse()
 execution.setVariable("outputString", output)

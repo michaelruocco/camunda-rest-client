@@ -19,11 +19,11 @@ import static uk.co.mruoc.camunda.client.header.HeaderConstants.CONTENT_TYPE_NAM
 @RequiredArgsConstructor
 public class CreateDeploymentRequestConverter implements RequestConverter {
 
-    private final String baseUri;
+    private final String defaultBaseUri;
     private final HeaderPopulator headerPopulator;
 
-    public CreateDeploymentRequestConverter(String baseUri) {
-        this(baseUri, defaultHeaderPopulator());
+    public CreateDeploymentRequestConverter(String defaultBaseUri) {
+        this(defaultBaseUri, defaultHeaderPopulator());
     }
 
     @Override
@@ -42,6 +42,7 @@ public class CreateDeploymentRequestConverter implements RequestConverter {
         MultipartBodyPublisher body = toBody(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
+        String baseUri = request.getOverrideBaseUri().orElse(defaultBaseUri);
         return builder.header(CONTENT_TYPE_NAME, body.mediaType().toString())
                 .header(ACCEPT_NAME, APPLICATION_JSON)
                 .uri(URI.create(String.format("%s/engine-rest/deployment/create", baseUri)))
