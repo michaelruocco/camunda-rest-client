@@ -21,6 +21,14 @@ public class ResponseConverter {
         throw new CamundaClientException(body);
     }
 
+    public void throwErrorIfRequired(HttpResponse<String> response) {
+        String body = response.body();
+        if (!isSuccessful(response)) {
+            throw new CamundaClientException(body);
+        }
+        log.info(body);
+    }
+
     private boolean isSuccessful(HttpResponse<String> response) {
         var status = response.statusCode();
         return status >= 200 && status <= 299;

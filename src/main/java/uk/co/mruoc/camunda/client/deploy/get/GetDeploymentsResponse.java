@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Collection;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Data
@@ -13,5 +15,11 @@ import java.util.Collection;
 public class GetDeploymentsResponse {
 
     private final Collection<Deployment> deployments;
+
+    public Collection<UUID> getDeploymentIds() {
+        return deployments.stream()
+                .map(Deployment::getId)
+                .collect(Collectors.toList());
+    }
 
 }

@@ -21,6 +21,7 @@ public class GetDeploymentsRequest {
 
     private final OffsetDateTime before;
     private final OffsetDateTime after;
+    private final String overrideBaseUri;
 
     public String toQueryString() {
         String queryString = URLEncodedUtils.format(toNameValuePairs(), StandardCharsets.UTF_8);
@@ -28,6 +29,10 @@ public class GetDeploymentsRequest {
             return queryString;
         }
         return String.format("?%s", queryString);
+    }
+
+    public Optional<String> getOverrideBaseUri() {
+        return Optional.ofNullable(overrideBaseUri);
     }
 
     private Collection<NameValuePair> toNameValuePairs() {

@@ -18,7 +18,6 @@ public class CreateDeploymentRequest {
     private final String tenantId;
     @Builder.Default
     private final Collection<Resource> resources = Collections.emptyList();
-
     private final String overrideBaseUri;
 
     public Optional<String> getTenantId() {

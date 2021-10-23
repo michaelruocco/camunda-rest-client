@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
+import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
@@ -41,6 +42,12 @@ public class CamundaClient {
         HttpRequest httpRequest = requestConverter.toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, GetDeploymentsResponse.class);
+    }
+
+    public void deleteDeployment(DeleteDeploymentRequest request) {
+        HttpRequest httpRequest = requestConverter.toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        responseConverter.throwErrorIfRequired(response);
     }
 
     public StartProcessResponse startProcess(StartProcessRequest request) {
