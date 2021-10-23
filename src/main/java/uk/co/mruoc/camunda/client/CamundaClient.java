@@ -2,10 +2,10 @@ package uk.co.mruoc.camunda.client;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest;
-import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse;
-import uk.co.mruoc.camunda.client.deploy.GetDeploymentsResponse;
-import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequest;
+import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequest;
+import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
 import uk.co.mruoc.json.JsonConverter;

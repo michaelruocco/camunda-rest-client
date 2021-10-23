@@ -1,8 +1,8 @@
-package uk.co.mruoc.camunda.client.deploy;
+package uk.co.mruoc.camunda.client.deploy.create;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest.CreateDeploymentRequestBuilder;
+import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequest.CreateDeploymentRequestBuilder;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateDeploymentRequestMother {

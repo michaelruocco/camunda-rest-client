@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.deploy;
+package uk.co.mruoc.camunda.client.deploy.get;
 
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;

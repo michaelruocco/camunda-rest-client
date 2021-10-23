@@ -1,8 +1,9 @@
-package uk.co.mruoc.camunda.client.deploy;
+package uk.co.mruoc.camunda.client.deploy.create;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse.CreateDeploymentResponseBuilder;
+import uk.co.mruoc.camunda.client.LinkMother;
+import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse.CreateDeploymentResponseBuilder;
 
 import java.util.UUID;
 

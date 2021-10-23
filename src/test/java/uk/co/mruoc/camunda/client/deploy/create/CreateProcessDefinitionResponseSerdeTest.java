@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.deploy;
+package uk.co.mruoc.camunda.client.deploy.create;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

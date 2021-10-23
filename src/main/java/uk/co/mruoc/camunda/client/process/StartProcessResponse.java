@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import uk.co.mruoc.camunda.client.deploy.Link;
+import uk.co.mruoc.camunda.client.Link;
 
 import java.util.Collection;
 import java.util.UUID;

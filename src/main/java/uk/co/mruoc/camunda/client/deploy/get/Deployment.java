@@ -1,10 +1,11 @@
-package uk.co.mruoc.camunda.client.deploy;
+package uk.co.mruoc.camunda.client.deploy.get;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import uk.co.mruoc.camunda.client.Link;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;

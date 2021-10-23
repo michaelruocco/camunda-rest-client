@@ -4,18 +4,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequest;
-import uk.co.mruoc.camunda.client.deploy.CreateDeploymentResponse;
-import uk.co.mruoc.camunda.client.deploy.GetDeploymentsResponse;
-import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequest;
-import uk.co.mruoc.camunda.client.deploy.GetDeploymentsRequestMother;
+import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequest;
+import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
-import static uk.co.mruoc.camunda.client.deploy.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
 
 @Testcontainers
 class CamundaClientIntegrationTest {

@@ -1,10 +1,11 @@
-package uk.co.mruoc.camunda.client.deploy;
+package uk.co.mruoc.camunda.client.deploy.create;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import uk.co.mruoc.camunda.client.Link;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
@@ -29,6 +30,9 @@ public class CreateDeploymentResponse {
     private final Collection<Object> deployedDecisionRequirementsDefinitions;
 
     public String getFirstDeployedProcessDefinitionKey() {
+        if (deployedProcessDefinitions == null) {
+            throw new NoProcessDefinitionsDeployedException();
+        }
         return deployedProcessDefinitions.stream().findFirst()
                 .map(ProcessDefinition::getKey)
                 .orElseThrow(NoProcessDefinitionsDeployedException::new);
