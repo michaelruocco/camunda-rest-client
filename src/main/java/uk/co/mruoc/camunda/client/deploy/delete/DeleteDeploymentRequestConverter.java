@@ -34,10 +34,15 @@ public class DeleteDeploymentRequestConverter implements RequestConverter {
     private HttpRequest toHttpRequest(DeleteDeploymentRequest request) {
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        String baseUri = request.getOverrideBaseUri().orElse(defaultBaseUri);
-        return builder.uri(URI.create(String.format("%s/engine-rest/deployment/%s", baseUri, request.getId())))
+        return builder.uri(toUri(request))
                 .DELETE()
                 .build();
+    }
+
+    private URI toUri(DeleteDeploymentRequest request) {
+        String baseUri = request.getOverrideBaseUri().orElse(defaultBaseUri);
+        String uri = String.format("%s/engine-rest/deployment/%s%s", baseUri, request.getId(), request.toQueryString());
+        return URI.create(uri);
     }
 
     private static HeaderPopulator defaultHeaderPopulator() {

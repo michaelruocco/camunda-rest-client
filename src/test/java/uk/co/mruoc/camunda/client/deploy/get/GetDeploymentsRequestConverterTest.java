@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.deploy.create;
+package uk.co.mruoc.camunda.client.deploy.get;
 
 import org.junit.jupiter.api.Test;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
@@ -10,16 +10,16 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-class CreateDeploymentRequestConverterTest {
+class GetDeploymentsRequestConverterTest {
 
     private static final String DEFAULT_BASE_URI = "http://localhost:7999";
 
     private final HeaderPopulator headerPopulator = mock(HeaderPopulator.class);
 
-    private final CreateDeploymentRequestConverter converter = new CreateDeploymentRequestConverter(DEFAULT_BASE_URI, headerPopulator);
+    private final GetDeploymentsRequestConverter converter = new GetDeploymentsRequestConverter(DEFAULT_BASE_URI, headerPopulator);
 
     @Test
-    void shouldReturnEmptyIfRequestIsNotCreateDeploymentRequest() {
+    void shouldReturnEmptyIfRequestIsNotGetDeploymentsRequest() {
         Object request = new Object();
 
         Optional<HttpRequest> httpRequest = converter.toHttpRequest(request);
@@ -29,8 +29,7 @@ class CreateDeploymentRequestConverterTest {
 
     @Test
     void shouldReturnHttpRequestUsingDefaultBaseUriIfNoOverrideUriSpecifiedInRequest() {
-        CreateDeploymentRequest request = CreateDeploymentRequestMother.builder()
-                .resources(ResourceMother.buildInlineScriptDemoResources())
+        GetDeploymentsRequest request = GetDeploymentsRequestMother.builder()
                 .overrideBaseUri(null)
                 .build();
 
@@ -46,8 +45,7 @@ class CreateDeploymentRequestConverterTest {
     @Test
     void shouldReturnHttpRequestUsingOverrideUriIfSpecifiedInRequest() {
         String overrideBaseUri = "http://override:8081";
-        CreateDeploymentRequest request = CreateDeploymentRequestMother.builder()
-                .resources(ResourceMother.buildInlineScriptDemoResources())
+        GetDeploymentsRequest request = GetDeploymentsRequestMother.builder()
                 .overrideBaseUri(overrideBaseUri)
                 .build();
 

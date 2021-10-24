@@ -1,14 +1,14 @@
-package uk.co.mruoc.camunda.client.deploy.get;
+package uk.co.mruoc.camunda.client.deploy.delete;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GetDeploymentRequestTest {
+class DeleteDeploymentRequestTest {
 
     @Test
     void shouldReturnEmptyQueryStringIfNoValuesSet() {
-        GetDeploymentsRequest request = GetDeploymentsRequestMother.empty();
+        DeleteDeploymentRequest request = DeleteDeploymentsRequestMother.build();
 
         String queryString = request.toQueryString();
 
@@ -17,13 +17,13 @@ class GetDeploymentRequestTest {
 
     @Test
     void shouldConvertValuesToQueryString() {
-        GetDeploymentsRequest request = GetDeploymentsRequestMother.build();
+        DeleteDeploymentRequest request = DeleteDeploymentsRequestMother.withQueryStringArgs();
 
         String queryString = request.toQueryString();
 
         assertThat(queryString).isEqualTo("?" +
-                "before=2050-12-31T12%3A00%3A00.000%2B0000" +
-                "&after=2000-01-01T12%3A00%3A00.000%2B0000");
+                "cascade=true" +
+                "&skipCustomListeners=true");
     }
 
 }

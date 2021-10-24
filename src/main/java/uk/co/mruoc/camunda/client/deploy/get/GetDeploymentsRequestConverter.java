@@ -15,7 +15,7 @@ import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON
 @RequiredArgsConstructor
 public class GetDeploymentsRequestConverter implements RequestConverter {
 
-    private final String baseUri;
+    private final String defaultBaseUri;
     private final HeaderPopulator headerPopulator;
 
     public GetDeploymentsRequestConverter(String baseUri) {
@@ -38,9 +38,15 @@ public class GetDeploymentsRequestConverter implements RequestConverter {
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
         return builder.header(ACCEPT_NAME, APPLICATION_JSON)
-                .uri(URI.create(String.format("%s/engine-rest/deployment%s", baseUri, request.toQueryString())))
+                .uri(toUri(request))
                 .GET()
                 .build();
+    }
+
+    private URI toUri(GetDeploymentsRequest request) {
+        String baseUri = request.getOverrideBaseUri().orElse(defaultBaseUri);
+        String uri = String.format("%s/engine-rest/deployment%s", baseUri, request.toQueryString());
+        return URI.create(uri);
     }
 
     private static HeaderPopulator defaultHeaderPopulator() {

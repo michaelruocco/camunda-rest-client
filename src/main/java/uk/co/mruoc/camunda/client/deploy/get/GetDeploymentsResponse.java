@@ -16,6 +16,10 @@ public class GetDeploymentsResponse {
 
     private final Collection<Deployment> deployments;
 
+    public int getNumberOfDeployments() {
+        return deployments.size();
+    }
+
     public Collection<UUID> getDeploymentIds() {
         return deployments.stream()
                 .map(Deployment::getId)

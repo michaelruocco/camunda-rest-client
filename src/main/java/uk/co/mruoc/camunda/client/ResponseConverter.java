@@ -12,21 +12,24 @@ public class ResponseConverter {
 
     private final JsonConverter jsonConverter;
 
+    public void throwErrorIfRequired(HttpResponse<String> response) {
+        log(response);
+        if (!isSuccessful(response)) {
+            throw new CamundaClientException(response.body());
+        }
+    }
+
     public <T> T toTypeOrThrowError(HttpResponse<String> response, Class<T> type) {
+        log(response);
         String body = response.body();
         if (isSuccessful(response)) {
-            log.info(body);
             return jsonConverter.toObject(body, type);
         }
         throw new CamundaClientException(body);
     }
 
-    public void throwErrorIfRequired(HttpResponse<String> response) {
-        String body = response.body();
-        if (!isSuccessful(response)) {
-            throw new CamundaClientException(body);
-        }
-        log.info(body);
+    private void log(HttpResponse<String> response) {
+        log.info("response status: {} body: {}", response.statusCode(), response.body());
     }
 
     private boolean isSuccessful(HttpResponse<String> response) {

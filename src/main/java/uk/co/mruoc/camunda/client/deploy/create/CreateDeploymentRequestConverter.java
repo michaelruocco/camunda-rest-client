@@ -39,13 +39,12 @@ public class CreateDeploymentRequestConverter implements RequestConverter {
     }
 
     private HttpRequest toHttpRequest(CreateDeploymentRequest request) {
-        MultipartBodyPublisher body = toBody(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        String baseUri = request.getOverrideBaseUri().orElse(defaultBaseUri);
+        MultipartBodyPublisher body = toBody(request);
         return builder.header(CONTENT_TYPE_NAME, body.mediaType().toString())
                 .header(ACCEPT_NAME, APPLICATION_JSON)
-                .uri(URI.create(String.format("%s/engine-rest/deployment/create", baseUri)))
+                .uri(toUri(request))
                 .POST(body)
                 .build();
     }
@@ -59,6 +58,11 @@ public class CreateDeploymentRequestConverter implements RequestConverter {
         request.getTenantId().ifPresent(id -> bodyBuilder.textPart("tenant-id", id));
         request.getResources().forEach(resource -> append(bodyBuilder, resource));
         return bodyBuilder.build();
+    }
+
+    private URI toUri(CreateDeploymentRequest request) {
+        String baseUri = request.getOverrideBaseUri().orElse(defaultBaseUri);
+        return URI.create(String.format("%s/engine-rest/deployment/create", baseUri));
     }
 
     private static void append(MultipartBodyPublisher.Builder builder, Resource resource) {

@@ -9,7 +9,9 @@ import uk.co.mruoc.camunda.client.Link;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @Builder
 @RequiredArgsConstructor
@@ -30,10 +32,9 @@ public class CreateDeploymentResponse {
     private final Collection<Object> deployedDecisionRequirementsDefinitions;
 
     public String getFirstDeployedProcessDefinitionKey() {
-        if (deployedProcessDefinitions == null) {
-            throw new NoProcessDefinitionsDeployedException();
-        }
-        return deployedProcessDefinitions.stream().findFirst()
+        return Optional.ofNullable(deployedProcessDefinitions)
+                .map(Collection::stream)
+                .flatMap(Stream::findFirst)
                 .map(ProcessDefinition::getKey)
                 .orElseThrow(NoProcessDefinitionsDeployedException::new);
     }

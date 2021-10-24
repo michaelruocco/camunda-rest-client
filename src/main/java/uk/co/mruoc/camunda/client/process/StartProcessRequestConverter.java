@@ -38,18 +38,21 @@ public class StartProcessRequestConverter implements RequestConverter {
     }
 
     private HttpRequest toHttpRequest(StartProcessRequest request) {
-        HttpRequest.BodyPublisher body = toBody(request);
-        String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessDefinitionKey());
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
         return builder.header(CONTENT_TYPE_NAME, APPLICATION_JSON)
                 .header(ACCEPT_NAME, APPLICATION_JSON)
-                .uri(URI.create(uri))
-                .POST(body)
+                .uri(toUri(request))
+                .POST(toBody(request))
                 .build();
     }
 
-    public HttpRequest.BodyPublisher toBody(StartProcessRequest request) {
+    private URI toUri(StartProcessRequest request) {
+        String uri = String.format("%s/engine-rest/process-definition/key/%s/start", baseUri, request.getProcessDefinitionKey());
+        return URI.create(uri);
+    }
+
+    private HttpRequest.BodyPublisher toBody(StartProcessRequest request) {
         return HttpRequest.BodyPublishers.ofString(jsonConverter.toJson(request));
     }
 
