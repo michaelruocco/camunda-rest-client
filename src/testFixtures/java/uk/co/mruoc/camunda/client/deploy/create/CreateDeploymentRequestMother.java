@@ -21,6 +21,13 @@ public class CreateDeploymentRequestMother {
                 .build();
     }
 
+    public static CreateDeploymentRequest buildMessageDemoScriptDeploymentRequest() {
+        return builder()
+                .deploymentName("message-demo-deployment")
+                .resources(ResourceMother.buildInlineScriptResources("message-demo.bpmn"))
+                .build();
+    }
+
     public static CreateDeploymentRequestBuilder builder() {
         return CreateDeploymentRequest.builder()
                 .deploymentName("demo-deployment")

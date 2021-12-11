@@ -16,7 +16,7 @@ public class ProcessDefinitionMother {
 
     public static ProcessDefinition build() {
         return ProcessDefinition.builder()
-                .id(UUID.fromString("276cf6eb-2e70-11ec-8938-0242ac110003"))
+                .id("276cf6eb-2e70-11ec-8938-0242ac110003")
                 .key("inline-script-demo-process")
                 .category("http://bpmn.io/schema/bpmn")
                 .name("inline-script-demo-process")

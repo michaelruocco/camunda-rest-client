@@ -23,7 +23,11 @@ public class ResourceMother {
     }
 
     public static Collection<Resource> buildInlineScriptDemoResources() {
-        return Collections.singleton(buildFromBpmnDirectory("inline-script-demo.bpmn"));
+        return buildInlineScriptResources("inline-script-demo.bpmn");
+    }
+
+    public static Collection<Resource> buildInlineScriptResources(String filename) {
+        return Collections.singleton(buildFromBpmnDirectory(filename));
     }
 
     public static Collection<Resource> build(Path... paths) {

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ztsws3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="message-demo" name="message-demo" isExecutable="true">
+    <bpmn:startEvent id="message-demo-start" name="message-demo-start">
+      <bpmn:outgoing>Flow_1izyyj3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:scriptTask id="log-wait-for-message" name="log-wait-for-message" scriptFormat="groovy">
+      <bpmn:incoming>Flow_1izyyj3</bpmn:incoming>
+      <bpmn:outgoing>Flow_09b5lej</bpmn:outgoing>
+      <bpmn:script>import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+Logger logger = LoggerFactory.getLogger(this.getClass())
+
+logger.info("waiting for message")</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1izyyj3" sourceRef="message-demo-start" targetRef="log-wait-for-message" />
+    <bpmn:scriptTask id="log-message-received" name="log-message-received" scriptFormat="groovy">
+      <bpmn:incoming>Flow_1capp4s</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aboagw</bpmn:outgoing>
+      <bpmn:script>import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+Logger logger = LoggerFactory.getLogger(this.getClass())
+
+def inputMessage = execution.getVariable("inputMessage")
+logger.info("message received {}", inputMessage)</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="message-demo-end" name="message-demo-end">
+      <bpmn:incoming>Flow_1aboagw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1aboagw" sourceRef="log-message-received" targetRef="message-demo-end" />
+    <bpmn:sequenceFlow id="Flow_09b5lej" sourceRef="log-wait-for-message" targetRef="receive-message" />
+    <bpmn:sequenceFlow id="Flow_1capp4s" sourceRef="receive-message" targetRef="log-message-received" />
+    <bpmn:intermediateCatchEvent id="receive-message" name="receive-message">
+      <bpmn:incoming>Flow_09b5lej</bpmn:incoming>
+      <bpmn:outgoing>Flow_1capp4s</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_06a7rep" messageRef="Message_0ekkxea" />
+    </bpmn:intermediateCatchEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_0ekkxea" name="receive-message" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="message-demo">
+      <bpmndi:BPMNEdge id="Flow_1izyyj3_di" bpmnElement="Flow_1izyyj3">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="290" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aboagw_di" bpmnElement="Flow_1aboagw">
+        <di:waypoint x="610" y="117" />
+        <di:waypoint x="662" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09b5lej_di" bpmnElement="Flow_09b5lej">
+        <di:waypoint x="390" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1capp4s_di" bpmnElement="Flow_1capp4s">
+        <di:waypoint x="468" y="117" />
+        <di:waypoint x="510" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="message-demo-start">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="142" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02exxlq_di" bpmnElement="log-wait-for-message">
+        <dc:Bounds x="290" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0q89d6q_di" bpmnElement="log-message-received">
+        <dc:Bounds x="510" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jwo4by_di" bpmnElement="message-demo-end">
+        <dc:Bounds x="662" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="640" y="142" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ooqtae_di" bpmnElement="receive-message">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="408" y="142" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

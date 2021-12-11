@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import uk.co.mruoc.camunda.client.process.variable.Variable;
+import uk.co.mruoc.camunda.client.variable.Variable;
 
 import java.util.Collection;
 

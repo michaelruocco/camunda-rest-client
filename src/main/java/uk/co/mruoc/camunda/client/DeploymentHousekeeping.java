@@ -2,6 +2,7 @@ package uk.co.mruoc.camunda.client;
 
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
+import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest.DeleteDeploymentRequestBuilder;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class DeploymentHousekeeping {
 
     private final CamundaClient client;
-    private final DeleteDeploymentRequest.DeleteDeploymentRequestBuilder deleteDeploymentRequestBuilder;
+    private final DeleteDeploymentRequestBuilder deleteDeploymentRequestBuilder;
 
     public DeploymentHousekeeping(CamundaClient client) {
         this(client, DeleteDeploymentRequest.builder().cascade(true));

@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 public class ProcessDefinition {
 
-    private final UUID id;
+    private final String id;
     private final String key;
     private final String category;
     private final String description;

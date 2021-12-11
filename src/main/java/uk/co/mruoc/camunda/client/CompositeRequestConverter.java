@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestConverter;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequestConverter;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestConverter;
+import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
 
@@ -26,7 +27,8 @@ public class CompositeRequestConverter {
                 new StartProcessRequestConverter(baseUri, jsonConverter),
                 new CreateDeploymentRequestConverter(baseUri),
                 new GetDeploymentsRequestConverter(baseUri),
-                new DeleteDeploymentRequestConverter(baseUri)
+                new DeleteDeploymentRequestConverter(baseUri),
+                new DeliverMessageRequestConverter(baseUri, jsonConverter)
         );
     }
 

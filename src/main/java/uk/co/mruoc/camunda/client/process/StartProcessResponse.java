@@ -17,7 +17,7 @@ public class StartProcessResponse {
 
     private final Collection<Link> links;
     private final UUID id;
-    private final UUID definitionId;
+    private final String definitionId;
     private final String businessKey;
     private final String caseInstanceId;
     private final boolean ended;

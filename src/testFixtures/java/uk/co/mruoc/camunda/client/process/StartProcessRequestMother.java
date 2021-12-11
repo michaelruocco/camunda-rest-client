@@ -2,9 +2,9 @@ package uk.co.mruoc.camunda.client.process;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import uk.co.mruoc.camunda.client.process.variable.LongVariable;
-import uk.co.mruoc.camunda.client.process.variable.StringVariable;
-import uk.co.mruoc.camunda.client.process.variable.Variable;
+import uk.co.mruoc.camunda.client.variable.LongVariable;
+import uk.co.mruoc.camunda.client.variable.StringVariable;
+import uk.co.mruoc.camunda.client.variable.Variable;
 
 import java.util.Arrays;
 import java.util.Collection;
