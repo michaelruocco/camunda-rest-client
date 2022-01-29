@@ -14,5 +14,4 @@ public class Link {
     private final String method;
     private final String href;
     private final String rel;
-
 }

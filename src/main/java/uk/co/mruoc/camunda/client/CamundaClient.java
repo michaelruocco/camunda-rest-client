@@ -1,20 +1,19 @@
 package uk.co.mruoc.camunda.client;
 
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
-import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
 import uk.co.mruoc.json.JsonConverter;
 import uk.co.mruoc.json.jackson.JacksonJsonConverter;
-
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 @Builder
 @RequiredArgsConstructor
@@ -30,11 +29,11 @@ public class CamundaClient {
     }
 
     public CamundaClient(String baseUri, JsonConverter jsonConverter) {
-        this(baseUri,
+        this(
+                baseUri,
                 new RequestExecutor(),
                 new CompositeRequestConverter(baseUri, jsonConverter),
-                new ResponseConverter(jsonConverter)
-        );
+                new ResponseConverter(jsonConverter));
     }
 
     public CreateDeploymentResponse createDeployment(CreateDeploymentRequest request) {
@@ -66,5 +65,4 @@ public class CamundaClient {
         HttpResponse<String> response = executor.execute(httpRequest);
         responseConverter.throwErrorIfRequired(response);
     }
-
 }

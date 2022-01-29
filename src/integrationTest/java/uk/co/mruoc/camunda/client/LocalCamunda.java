@@ -1,11 +1,9 @@
 package uk.co.mruoc.camunda.client;
 
+import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.output.OutputFrame;
-
-import java.time.Duration;
-
 
 @Slf4j
 public class LocalCamunda extends GenericContainer<LocalCamunda> {
@@ -30,8 +28,6 @@ public class LocalCamunda extends GenericContainer<LocalCamunda> {
     }
 
     private static String removeNewline(String value) {
-        return value.replace("\n", "")
-                .replace("\r", "");
+        return value.replace("\n", "").replace("\r", "");
     }
-
 }

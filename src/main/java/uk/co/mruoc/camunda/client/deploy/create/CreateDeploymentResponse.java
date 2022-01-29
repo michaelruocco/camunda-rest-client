@@ -2,16 +2,15 @@ package uk.co.mruoc.camunda.client.deploy.create;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import uk.co.mruoc.camunda.client.Link;
-
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import uk.co.mruoc.camunda.client.Link;
 
 @Builder
 @RequiredArgsConstructor
@@ -38,5 +37,4 @@ public class CreateDeploymentResponse {
                 .map(ProcessDefinition::getKey)
                 .orElseThrow(NoProcessDefinitionsDeployedException::new);
     }
-
 }

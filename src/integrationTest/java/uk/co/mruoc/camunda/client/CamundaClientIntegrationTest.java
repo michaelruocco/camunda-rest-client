@@ -1,5 +1,12 @@
 package uk.co.mruoc.camunda.client;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildMessageDemoScriptDeploymentRequest;
+
+import java.util.UUID;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -8,23 +15,15 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
-import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestMother;
+import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
-import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
+import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
 import uk.co.mruoc.camunda.client.variable.JsonVariable;
 import uk.co.mruoc.camunda.client.variable.Variables;
-
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
-import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
-import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildMessageDemoScriptDeploymentRequest;
 
 @Testcontainers
 class CamundaClientIntegrationTest {
@@ -104,5 +103,4 @@ class CamundaClientIntegrationTest {
     private static CreateDeploymentResponse givenBpmnIsDeployed(CreateDeploymentRequest request) {
         return client.createDeployment(request);
     }
-
 }

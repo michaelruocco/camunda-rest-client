@@ -1,14 +1,13 @@
 package uk.co.mruoc.camunda.client;
 
+import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest.DeleteDeploymentRequestBuilder;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
-
-import java.time.OffsetDateTime;
-import java.util.Collection;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 public class DeploymentHousekeeping {
@@ -26,17 +25,13 @@ public class DeploymentHousekeeping {
     }
 
     private Collection<UUID> getDeploymentIdsCreatedBefore(OffsetDateTime cutoff) {
-        GetDeploymentsRequest request = GetDeploymentsRequest.builder()
-                .before(cutoff)
-                .build();
+        GetDeploymentsRequest request =
+                GetDeploymentsRequest.builder().before(cutoff).build();
         GetDeploymentsResponse response = client.getDeployments(request);
         return response.getDeploymentIds();
     }
 
     private void deleteDeployments(Collection<UUID> ids) {
-        ids.stream()
-                .map(id -> deleteDeploymentRequestBuilder.id(id).build())
-                .forEach(client::deleteDeployment);
+        ids.stream().map(id -> deleteDeploymentRequestBuilder.id(id).build()).forEach(client::deleteDeployment);
     }
-
 }

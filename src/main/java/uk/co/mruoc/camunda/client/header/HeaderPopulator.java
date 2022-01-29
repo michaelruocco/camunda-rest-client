@@ -5,5 +5,4 @@ import java.net.http.HttpRequest;
 public interface HeaderPopulator {
 
     HttpRequest.Builder populate(HttpRequest.Builder builder);
-
 }

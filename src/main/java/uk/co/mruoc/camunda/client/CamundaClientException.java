@@ -9,5 +9,4 @@ public class CamundaClientException extends RuntimeException {
     public CamundaClientException(String message) {
         super(message);
     }
-
 }

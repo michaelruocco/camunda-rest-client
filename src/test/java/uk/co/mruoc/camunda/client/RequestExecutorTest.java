@@ -1,17 +1,16 @@
 package uk.co.mruoc.camunda.client;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import org.junit.jupiter.api.Test;
 
 class RequestExecutorTest {
 
@@ -37,9 +36,7 @@ class RequestExecutorTest {
 
         Throwable error = catchThrowable(() -> executor.execute(request));
 
-        assertThat(error)
-                .isInstanceOf(CamundaClientException.class)
-                .hasCauseInstanceOf(IOException.class);
+        assertThat(error).isInstanceOf(CamundaClientException.class).hasCauseInstanceOf(IOException.class);
     }
 
     @Test
@@ -49,9 +46,6 @@ class RequestExecutorTest {
 
         Throwable error = catchThrowable(() -> executor.execute(request));
 
-        assertThat(error)
-                .isInstanceOf(CamundaClientException.class)
-                .hasCauseInstanceOf(InterruptedException.class);
+        assertThat(error).isInstanceOf(CamundaClientException.class).hasCauseInstanceOf(InterruptedException.class);
     }
-
 }

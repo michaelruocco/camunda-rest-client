@@ -1,14 +1,13 @@
 package uk.co.mruoc.camunda.client.deploy.create;
 
-import org.junit.jupiter.api.Test;
-import uk.co.mruoc.camunda.client.header.HeaderPopulator;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.Test;
+import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 
 class CreateDeploymentRequestConverterTest {
 
@@ -16,7 +15,8 @@ class CreateDeploymentRequestConverterTest {
 
     private final HeaderPopulator headerPopulator = mock(HeaderPopulator.class);
 
-    private final CreateDeploymentRequestConverter converter = new CreateDeploymentRequestConverter(DEFAULT_BASE_URI, headerPopulator);
+    private final CreateDeploymentRequestConverter converter =
+            new CreateDeploymentRequestConverter(DEFAULT_BASE_URI, headerPopulator);
 
     @Test
     void shouldReturnEmptyIfRequestIsNotCreateDeploymentRequest() {
@@ -36,10 +36,7 @@ class CreateDeploymentRequestConverterTest {
 
         Optional<HttpRequest> httpRequest = converter.toHttpRequest(request);
 
-        String uri = httpRequest
-                .map(HttpRequest::uri)
-                .map(URI::toString)
-                .orElse("");
+        String uri = httpRequest.map(HttpRequest::uri).map(URI::toString).orElse("");
         assertThat(uri).startsWith(DEFAULT_BASE_URI);
     }
 
@@ -53,11 +50,7 @@ class CreateDeploymentRequestConverterTest {
 
         Optional<HttpRequest> httpRequest = converter.toHttpRequest(request);
 
-        String uri = httpRequest
-                .map(HttpRequest::uri)
-                .map(URI::toString)
-                .orElse("");
+        String uri = httpRequest.map(HttpRequest::uri).map(URI::toString).orElse("");
         assertThat(uri).startsWith(overrideBaseUri);
     }
-
 }

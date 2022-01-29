@@ -3,7 +3,6 @@ package uk.co.mruoc.camunda.client.deploy.create;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-
 import java.io.IOException;
 import java.util.Collection;
 
@@ -14,7 +13,8 @@ public class CreateDeploymentResponseSerializer extends StdSerializer<CreateDepl
     }
 
     @Override
-    public void serialize(CreateDeploymentResponse value, JsonGenerator json, SerializerProvider provider) throws IOException {
+    public void serialize(CreateDeploymentResponse value, JsonGenerator json, SerializerProvider provider)
+            throws IOException {
         json.writeStartObject();
         provider.defaultSerializeField("links", value.getLinks(), json);
         provider.defaultSerializeField("id", value.getId(), json);
@@ -25,11 +25,14 @@ public class CreateDeploymentResponseSerializer extends StdSerializer<CreateDepl
         write(value.getDeployedProcessDefinitions(), json, provider);
         provider.defaultSerializeField("deployedCaseDefinitions", value.getDeployedCaseDefinitions(), json);
         provider.defaultSerializeField("deployedDecisionDefinitions", value.getDeployedDecisionDefinitions(), json);
-        provider.defaultSerializeField("deployedDecisionRequirementsDefinitions", value.getDeployedDecisionRequirementsDefinitions(), json);
+        provider.defaultSerializeField(
+                "deployedDecisionRequirementsDefinitions", value.getDeployedDecisionRequirementsDefinitions(), json);
         json.writeEndObject();
     }
 
-    private void write(Collection<ProcessDefinition> processDefinitions, JsonGenerator json, SerializerProvider provider) throws IOException {
+    private void write(
+            Collection<ProcessDefinition> processDefinitions, JsonGenerator json, SerializerProvider provider)
+            throws IOException {
         json.writeFieldName("deployedProcessDefinitions");
         json.writeStartObject();
         for (ProcessDefinition processDefinition : processDefinitions) {
@@ -38,9 +41,9 @@ public class CreateDeploymentResponseSerializer extends StdSerializer<CreateDepl
         json.writeEndObject();
     }
 
-    private void write(ProcessDefinition processDefinition, JsonGenerator json, SerializerProvider provider) throws IOException {
+    private void write(ProcessDefinition processDefinition, JsonGenerator json, SerializerProvider provider)
+            throws IOException {
         json.writeFieldName(processDefinition.getId().toString());
         provider.defaultSerializeValue(processDefinition, json);
     }
-
 }

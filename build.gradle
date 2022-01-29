@@ -185,19 +185,7 @@ signLibPublication.enabled = gradle.startParameter.taskNames.contains("publishTo
 
 spotless {
     java {
-        removeUnusedImports()
-        trimTrailingWhitespace()
-        indentWithSpaces(4)
-        endWithNewline()
-
-        replace 'Not enough space after if', 'if(', 'if ('
-        replaceRegex 'Too much space after if', 'if +\\(', 'if ('
-
-        replace 'Not enough space after for', 'for(', 'for ('
-        replaceRegex 'Too much space after for', 'for +\\(', 'for ('
-
-        replace 'Not enough space after while', 'while(', 'while ('
-        replaceRegex 'Too much space after while', 'while +\\(', 'while ('
+        palantirJavaFormat("2.17.0")
     }
 }
 

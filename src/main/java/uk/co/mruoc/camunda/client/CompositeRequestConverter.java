@@ -1,5 +1,9 @@
 package uk.co.mruoc.camunda.client;
 
+import java.net.http.HttpRequest;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestConverter;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequestConverter;
@@ -7,11 +11,6 @@ import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestConverter;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
-
-import java.net.http.HttpRequest;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class CompositeRequestConverter {
@@ -28,8 +27,7 @@ public class CompositeRequestConverter {
                 new CreateDeploymentRequestConverter(baseUri),
                 new GetDeploymentsRequestConverter(baseUri),
                 new DeleteDeploymentRequestConverter(baseUri),
-                new DeliverMessageRequestConverter(baseUri, jsonConverter)
-        );
+                new DeliverMessageRequestConverter(baseUri, jsonConverter));
     }
 
     public HttpRequest toHttpRequest(Object object) {
@@ -39,5 +37,4 @@ public class CompositeRequestConverter {
                 .findFirst()
                 .orElseThrow(() -> new RequestNotSupportedException(object));
     }
-
 }

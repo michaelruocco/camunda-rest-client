@@ -1,10 +1,9 @@
 package uk.co.mruoc.camunda.client.variable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Arrays;
 import java.util.Collection;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class Variables {
@@ -19,5 +18,4 @@ public class Variables {
     public Collection<Variable> getValues() {
         return values;
     }
-
 }

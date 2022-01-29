@@ -1,13 +1,12 @@
 package uk.co.mruoc.camunda.client.deploy.delete;
 
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
-
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class DeleteDeploymentRequestConverter implements RequestConverter {
@@ -34,9 +33,7 @@ public class DeleteDeploymentRequestConverter implements RequestConverter {
     private HttpRequest toHttpRequest(DeleteDeploymentRequest request) {
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        return builder.uri(toUri(request))
-                .DELETE()
-                .build();
+        return builder.uri(toUri(request)).DELETE().build();
     }
 
     private URI toUri(DeleteDeploymentRequest request) {
@@ -48,5 +45,4 @@ public class DeleteDeploymentRequestConverter implements RequestConverter {
     private static HeaderPopulator defaultHeaderPopulator() {
         return new NoopHeaderPopulator();
     }
-
 }

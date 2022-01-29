@@ -1,9 +1,8 @@
 package uk.co.mruoc.camunda.client.header;
 
-import lombok.RequiredArgsConstructor;
-
 import java.net.http.HttpRequest;
 import java.util.function.Supplier;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class AuthorizationHeaderPopulator implements HeaderPopulator {
@@ -15,5 +14,4 @@ public class AuthorizationHeaderPopulator implements HeaderPopulator {
         builder.header("authorization", tokenSupplier.get());
         return builder;
     }
-
 }

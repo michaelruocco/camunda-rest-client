@@ -33,5 +33,4 @@ public class CreateDeploymentRequestMother {
                 .deploymentName("demo-deployment")
                 .deploymentSource("local");
     }
-
 }

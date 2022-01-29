@@ -1,14 +1,13 @@
 package uk.co.mruoc.camunda.client.header;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import org.junit.jupiter.api.Test;
 
 class CorrelationIdHeaderPopulatorTest {
 
@@ -42,9 +41,7 @@ class CorrelationIdHeaderPopulatorTest {
         String id1 = extractCorrelationId(randomIdPopulator.populate(newBuilder()));
         String id2 = extractCorrelationId(randomIdPopulator.populate(newBuilder()));
 
-        assertThat(id1)
-                .isNotEmpty()
-                .isNotEqualTo(id2);
+        assertThat(id1).isNotEmpty().isNotEqualTo(id2);
     }
 
     private static HttpRequest.Builder newBuilder() {
@@ -55,7 +52,7 @@ class CorrelationIdHeaderPopulatorTest {
         return builder.build()
                 .headers()
                 .firstValue(CORRELATION_ID_NAME)
-                .orElseThrow(() -> new IllegalStateException(String.format("header value for %s not found", CORRELATION_ID_NAME)));
+                .orElseThrow(() ->
+                        new IllegalStateException(String.format("header value for %s not found", CORRELATION_ID_NAME)));
     }
-
 }

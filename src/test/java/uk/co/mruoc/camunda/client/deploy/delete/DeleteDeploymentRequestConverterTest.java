@@ -1,14 +1,13 @@
 package uk.co.mruoc.camunda.client.deploy.delete;
 
-import org.junit.jupiter.api.Test;
-import uk.co.mruoc.camunda.client.header.HeaderPopulator;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.Test;
+import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 
 class DeleteDeploymentRequestConverterTest {
 
@@ -16,7 +15,8 @@ class DeleteDeploymentRequestConverterTest {
 
     private final HeaderPopulator headerPopulator = mock(HeaderPopulator.class);
 
-    private final DeleteDeploymentRequestConverter converter = new DeleteDeploymentRequestConverter(DEFAULT_BASE_URI, headerPopulator);
+    private final DeleteDeploymentRequestConverter converter =
+            new DeleteDeploymentRequestConverter(DEFAULT_BASE_URI, headerPopulator);
 
     @Test
     void shouldReturnEmptyIfRequestIsNotDeleteDeploymentRequest() {
@@ -29,16 +29,12 @@ class DeleteDeploymentRequestConverterTest {
 
     @Test
     void shouldReturnHttpRequestUsingDefaultBaseUriIfNoOverrideUriSpecifiedInRequest() {
-        DeleteDeploymentRequest request = DeleteDeploymentsRequestMother.builder()
-                .overrideBaseUri(null)
-                .build();
+        DeleteDeploymentRequest request =
+                DeleteDeploymentsRequestMother.builder().overrideBaseUri(null).build();
 
         Optional<HttpRequest> httpRequest = converter.toHttpRequest(request);
 
-        String uri = httpRequest
-                .map(HttpRequest::uri)
-                .map(URI::toString)
-                .orElse("");
+        String uri = httpRequest.map(HttpRequest::uri).map(URI::toString).orElse("");
         assertThat(uri).startsWith(DEFAULT_BASE_URI);
     }
 
@@ -51,11 +47,7 @@ class DeleteDeploymentRequestConverterTest {
 
         Optional<HttpRequest> httpRequest = converter.toHttpRequest(request);
 
-        String uri = httpRequest
-                .map(HttpRequest::uri)
-                .map(URI::toString)
-                .orElse("");
+        String uri = httpRequest.map(HttpRequest::uri).map(URI::toString).orElse("");
         assertThat(uri).startsWith(overrideBaseUri);
     }
-
 }

@@ -1,8 +1,8 @@
 package uk.co.mruoc.camunda.client.deploy.delete;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 class DeleteDeploymentRequestTest {
 
@@ -21,9 +21,6 @@ class DeleteDeploymentRequestTest {
 
         String queryString = request.toQueryString();
 
-        assertThat(queryString).isEqualTo("?" +
-                "cascade=true" +
-                "&skipCustomListeners=true");
+        assertThat(queryString).isEqualTo("?" + "cascade=true" + "&skipCustomListeners=true");
     }
-
 }

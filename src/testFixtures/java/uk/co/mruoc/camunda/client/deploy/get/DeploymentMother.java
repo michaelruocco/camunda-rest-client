@@ -1,12 +1,11 @@
 package uk.co.mruoc.camunda.client.deploy.get;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import uk.co.mruoc.camunda.client.LinkMother;
 import uk.co.mruoc.camunda.client.deploy.create.OffsetDateTimeParser;
 import uk.co.mruoc.camunda.client.deploy.get.Deployment.DeploymentBuilder;
-
-import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DeploymentMother {
@@ -28,5 +27,4 @@ public class DeploymentMother {
                 .deploymentTime(OffsetDateTimeParser.parse("2021-10-16T10:59:37.387+0000"))
                 .links(LinkMother.buildOne());
     }
-
 }

@@ -1,11 +1,10 @@
 package uk.co.mruoc.camunda.client.deploy.create;
 
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-
-import java.util.UUID;
 
 @Builder
 @RequiredArgsConstructor
@@ -27,5 +26,4 @@ public class ProcessDefinition {
     private final String versionTag;
     private final Long historyTimeToLive;
     private final boolean startableInTasklist;
-
 }

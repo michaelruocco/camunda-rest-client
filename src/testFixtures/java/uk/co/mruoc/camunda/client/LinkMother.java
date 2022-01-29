@@ -1,10 +1,9 @@
 package uk.co.mruoc.camunda.client;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
 import java.util.Collection;
 import java.util.Collections;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LinkMother {
@@ -20,5 +19,4 @@ public class LinkMother {
                 .rel("self")
                 .build();
     }
-
 }

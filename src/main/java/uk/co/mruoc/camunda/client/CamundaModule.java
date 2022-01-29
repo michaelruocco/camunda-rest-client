@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.util.Collections;
 import uk.co.mruoc.camunda.client.variable.Variables;
 import uk.co.mruoc.camunda.client.variable.VariablesSerializer;
-
-import java.util.Collections;
 
 public class CamundaModule extends SimpleModule {
 
@@ -21,5 +20,4 @@ public class CamundaModule extends SimpleModule {
     public Iterable<? extends Module> getDependencies() {
         return Collections.singleton(new JavaTimeModule());
     }
-
 }

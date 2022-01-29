@@ -1,14 +1,13 @@
 package uk.co.mruoc.camunda.client.deploy.create;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.Collections;
+import org.junit.jupiter.api.Test;
 
 class CreateDeploymentResponseTest {
 
@@ -41,5 +40,4 @@ class CreateDeploymentResponseTest {
         when(processDefinition.getKey()).thenReturn(key);
         return processDefinition;
     }
-
 }

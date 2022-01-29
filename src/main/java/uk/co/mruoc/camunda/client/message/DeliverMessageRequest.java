@@ -14,5 +14,4 @@ public class DeliverMessageRequest {
     private final String businessKey;
     private final Variables correlationKeys;
     private final Variables processVariables;
-
 }

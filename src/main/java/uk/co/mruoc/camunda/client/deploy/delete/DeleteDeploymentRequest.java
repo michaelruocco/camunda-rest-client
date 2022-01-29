@@ -1,17 +1,16 @@
 package uk.co.mruoc.camunda.client.deploy.delete;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
-
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Builder
@@ -52,8 +51,7 @@ public class DeleteDeploymentRequest {
 
     public static class DeleteDeploymentRequestBuilder {
 
-        //intentionally blank
+        // intentionally blank
 
     }
-
 }

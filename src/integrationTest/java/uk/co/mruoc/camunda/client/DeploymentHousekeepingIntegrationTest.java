@@ -1,5 +1,10 @@
 package uk.co.mruoc.camunda.client;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
+
+import java.time.OffsetDateTime;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Container;
@@ -7,12 +12,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestMother;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
-
-import java.time.OffsetDateTime;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
-import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
 
 @Testcontainers
 class DeploymentHousekeepingIntegrationTest {
@@ -48,5 +47,4 @@ class DeploymentHousekeepingIntegrationTest {
         GetDeploymentsResponse response = client.getDeployments(request);
         return response.getNumberOfDeployments();
     }
-
 }

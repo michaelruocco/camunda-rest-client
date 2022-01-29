@@ -1,12 +1,11 @@
 package uk.co.mruoc.camunda.client.header;
 
-import org.junit.jupiter.api.Test;
-
-import java.net.http.HttpRequest;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verifyNoInteractions;
+
+import java.net.http.HttpRequest;
+import org.junit.jupiter.api.Test;
 
 class NoopHeaderPopulatorTest {
 
@@ -29,5 +28,4 @@ class NoopHeaderPopulatorTest {
 
         verifyNoInteractions(builder);
     }
-
 }

@@ -9,5 +9,4 @@ public interface RequestConverter extends Function<Object, Optional<HttpRequest>
     default Optional<HttpRequest> toHttpRequest(Object request) {
         return apply(request);
     }
-
 }

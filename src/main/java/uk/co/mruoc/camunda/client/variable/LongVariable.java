@@ -5,5 +5,4 @@ public class LongVariable extends AbstractVariable {
     public LongVariable(String name, long value) {
         super(name, value, "long");
     }
-
 }

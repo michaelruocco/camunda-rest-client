@@ -10,5 +10,4 @@ public class CreateDeploymentResponseJsonMother {
     public static String build() {
         return ContentLoader.loadContentFromClasspath("json/create-deployment-response.json");
     }
-
 }

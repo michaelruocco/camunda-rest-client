@@ -1,10 +1,9 @@
 package uk.co.mruoc.camunda.client.header;
 
-import lombok.RequiredArgsConstructor;
-
 import java.net.http.HttpRequest;
 import java.util.UUID;
 import java.util.function.Supplier;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CorrelationIdHeaderPopulator implements HeaderPopulator {
@@ -20,5 +19,4 @@ public class CorrelationIdHeaderPopulator implements HeaderPopulator {
         builder.header("correlation-id", idSupplier.get());
         return builder;
     }
-
 }

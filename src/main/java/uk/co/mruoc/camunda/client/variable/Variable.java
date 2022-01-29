@@ -10,5 +10,4 @@ public interface Variable {
     Object getValue();
 
     String getType();
-
 }

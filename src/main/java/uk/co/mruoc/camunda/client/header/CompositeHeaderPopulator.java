@@ -1,10 +1,9 @@
 package uk.co.mruoc.camunda.client.header;
 
-import lombok.RequiredArgsConstructor;
-
 import java.net.http.HttpRequest;
 import java.util.Arrays;
 import java.util.Collection;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CompositeHeaderPopulator implements HeaderPopulator {
@@ -20,5 +19,4 @@ public class CompositeHeaderPopulator implements HeaderPopulator {
         populators.forEach(populator -> populator.populate(builder));
         return builder;
     }
-
 }

@@ -1,10 +1,9 @@
 package uk.co.mruoc.camunda.client;
 
+import java.net.http.HttpResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import uk.co.mruoc.json.JsonConverter;
-
-import java.net.http.HttpResponse;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -36,5 +35,4 @@ public class ResponseConverter {
         var status = response.statusCode();
         return status >= 200 && status <= 299;
     }
-
 }

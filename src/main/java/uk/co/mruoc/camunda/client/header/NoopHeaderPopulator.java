@@ -8,5 +8,4 @@ public class NoopHeaderPopulator implements HeaderPopulator {
     public HttpRequest.Builder populate(HttpRequest.Builder builder) {
         return builder;
     }
-
 }

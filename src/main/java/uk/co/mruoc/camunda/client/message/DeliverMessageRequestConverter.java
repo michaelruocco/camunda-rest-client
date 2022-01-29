@@ -1,18 +1,17 @@
 package uk.co.mruoc.camunda.client.message;
 
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.CONTENT_TYPE_NAME;
+
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
-
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.util.Optional;
-
-import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
-import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
-import static uk.co.mruoc.camunda.client.header.HeaderConstants.CONTENT_TYPE_NAME;
 
 @RequiredArgsConstructor
 public class DeliverMessageRequestConverter implements RequestConverter {
@@ -59,5 +58,4 @@ public class DeliverMessageRequestConverter implements RequestConverter {
     private static HeaderPopulator defaultHeaderPopulator() {
         return new NoopHeaderPopulator();
     }
-
 }

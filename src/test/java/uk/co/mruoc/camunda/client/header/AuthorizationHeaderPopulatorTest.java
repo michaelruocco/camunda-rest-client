@@ -1,12 +1,11 @@
 package uk.co.mruoc.camunda.client.header;
 
-import org.junit.jupiter.api.Test;
-
-import java.net.http.HttpRequest;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+
+import java.net.http.HttpRequest;
+import org.junit.jupiter.api.Test;
 
 class AuthorizationHeaderPopulatorTest {
 
@@ -31,5 +30,4 @@ class AuthorizationHeaderPopulatorTest {
 
         verify(builder).header("authorization", TOKEN_VALUE);
     }
-
 }

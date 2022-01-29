@@ -1,16 +1,15 @@
 package uk.co.mruoc.camunda.client;
 
-import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
-import org.junit.jupiter.api.Test;
-import uk.co.mruoc.json.JsonConverter;
-
-import java.net.http.HttpResponse;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.net.http.HttpResponse;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+import org.junit.jupiter.api.Test;
+import uk.co.mruoc.json.JsonConverter;
 
 class ResponseConverterTest {
 
@@ -66,9 +65,7 @@ class ResponseConverterTest {
 
         Throwable error = catchThrowable(() -> responseConverter.toTypeOrThrowError(response, Object.class));
 
-        assertThat(error)
-                .isInstanceOf(CamundaClientException.class)
-                .hasMessage(BODY);
+        assertThat(error).isInstanceOf(CamundaClientException.class).hasMessage(BODY);
     }
 
     @Test
@@ -77,9 +74,7 @@ class ResponseConverterTest {
 
         Throwable error = catchThrowable(() -> responseConverter.toTypeOrThrowError(response, Object.class));
 
-        assertThat(error)
-                .isInstanceOf(CamundaClientException.class)
-                .hasMessage(BODY);
+        assertThat(error).isInstanceOf(CamundaClientException.class).hasMessage(BODY);
     }
 
     @Test
@@ -88,9 +83,7 @@ class ResponseConverterTest {
 
         Throwable error = catchThrowable(() -> responseConverter.throwErrorIfRequired(response));
 
-        assertThat(error)
-                .isInstanceOf(CamundaClientException.class)
-                .hasMessage(BODY);
+        assertThat(error).isInstanceOf(CamundaClientException.class).hasMessage(BODY);
     }
 
     @Test
@@ -99,9 +92,7 @@ class ResponseConverterTest {
 
         Throwable error = catchThrowable(() -> responseConverter.throwErrorIfRequired(response));
 
-        assertThat(error)
-                .isInstanceOf(CamundaClientException.class)
-                .hasMessage(BODY);
+        assertThat(error).isInstanceOf(CamundaClientException.class).hasMessage(BODY);
     }
 
     private HttpResponse<String> givenResponse(int statusCode) {
@@ -114,5 +105,4 @@ class ResponseConverterTest {
     private <T> void givenResponseBodyConvertsTo(T object, Class<T> type) {
         when(jsonConverter.toObject(BODY, type)).thenReturn(object);
     }
-
 }

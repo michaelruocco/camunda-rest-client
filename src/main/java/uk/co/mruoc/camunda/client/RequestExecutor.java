@@ -1,12 +1,11 @@
 package uk.co.mruoc.camunda.client;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -29,5 +28,4 @@ public class RequestExecutor {
             throw new CamundaClientException(e);
         }
     }
-
 }

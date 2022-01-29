@@ -1,13 +1,12 @@
 package uk.co.mruoc.camunda.client.process;
 
+import java.util.Collection;
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.Link;
-
-import java.util.Collection;
-import java.util.UUID;
 
 @Builder
 @RequiredArgsConstructor
@@ -23,5 +22,4 @@ public class StartProcessResponse {
     private final boolean ended;
     private final boolean suspended;
     private final String tenantId;
-
 }

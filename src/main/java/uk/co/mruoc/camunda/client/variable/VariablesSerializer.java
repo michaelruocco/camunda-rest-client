@@ -3,7 +3,6 @@ package uk.co.mruoc.camunda.client.variable;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-
 import java.io.IOException;
 
 public class VariablesSerializer extends StdSerializer<Variables> {
@@ -28,5 +27,4 @@ public class VariablesSerializer extends StdSerializer<Variables> {
         json.writeStringField("type", variable.getType());
         json.writeEndObject();
     }
-
 }

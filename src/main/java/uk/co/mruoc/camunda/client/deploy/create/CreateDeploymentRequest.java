@@ -1,11 +1,10 @@
 package uk.co.mruoc.camunda.client.deploy.create;
 
-import lombok.Builder;
-import lombok.Data;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+import lombok.Builder;
+import lombok.Data;
 
 @Builder
 @Data
@@ -16,8 +15,10 @@ public class CreateDeploymentRequest {
     private final boolean deployChangedOnly;
     private final String deploymentSource;
     private final String tenantId;
+
     @Builder.Default
     private final Collection<Resource> resources = Collections.emptyList();
+
     private final String overrideBaseUri;
 
     public Optional<String> getTenantId() {
@@ -27,5 +28,4 @@ public class CreateDeploymentRequest {
     public Optional<String> getOverrideBaseUri() {
         return Optional.ofNullable(overrideBaseUri);
     }
-
 }
