@@ -22,6 +22,7 @@ ext {
     jacksonVersion = "2.13.1"
 
     junitVersion = "5.8.2"
+    testContainersVersion = "1.16.3"
 }
 
 sourceCompatibility = 11
@@ -60,13 +61,13 @@ dependencies {
     api 'com.github.michaelruocco:json-adapter:1.0.4'
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
     implementation "com.github.mizosoft.methanol:methanol:1.6.0"
-    implementation "org.apache.commons:commons-lang3:3.12.0"
     implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
     implementation "org.apache.httpcomponents:httpclient:4.5.13"
-    implementation "org.camunda.spin:camunda-spin-dataformat-json-jackson:1.13.0"
+    implementation "org.apache.httpcomponents:httpcore:4.4.15"
+    implementation "org.camunda.spin:camunda-spin-core:1.13.0"
 
     testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
@@ -77,13 +78,13 @@ dependencies {
 
     integrationTestCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     integrationTestAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    integrationTestImplementation "org.testcontainers:junit-jupiter:1.16.3"
-    integrationTestImplementation sourceSets.testFixtures.output
+    integrationTestImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
+    integrationTestImplementation "org.testcontainers:testcontainers:${testContainersVersion}"
+    integrationTestImplementation "junit:junit:4.13.2"
 
     testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testFixturesImplementation "com.github.michaelruocco:file-loader:6.0.5"
-    testFixturesImplementation "commons-io:commons-io:2.11.0"
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')
