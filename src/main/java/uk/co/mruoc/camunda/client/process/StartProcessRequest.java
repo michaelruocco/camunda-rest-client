@@ -1,5 +1,6 @@
 package uk.co.mruoc.camunda.client.process;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Collection;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import uk.co.mruoc.camunda.client.variable.Variable;
 @Builder
 @RequiredArgsConstructor
 @JsonSerialize(using = StartProcessRequestSerializer.class)
+@JsonDeserialize(using = StartProcessRequestDeserializer.class)
 @Data
 public class StartProcessRequest {
 

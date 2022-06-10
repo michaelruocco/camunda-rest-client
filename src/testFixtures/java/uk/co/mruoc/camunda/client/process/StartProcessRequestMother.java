@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import uk.co.mruoc.camunda.client.variable.JsonVariable;
 import uk.co.mruoc.camunda.client.variable.LongVariable;
 import uk.co.mruoc.camunda.client.variable.StringVariable;
 import uk.co.mruoc.camunda.client.variable.Variable;
@@ -19,10 +20,14 @@ public class StartProcessRequestMother {
         return StartProcessRequest.builder()
                 .processDefinitionKey(processKey)
                 .variables(variables())
+                .businessKey("default-business-key")
                 .build();
     }
 
     private static Collection<Variable> variables() {
-        return Arrays.asList(new StringVariable("inputString", "hi joe bloggs"), new LongVariable("inputLong", 0));
+        return Arrays.asList(
+                new StringVariable("inputString", "hi joe bloggs"),
+                new LongVariable("inputLong", 0),
+                new JsonVariable("inputJson", "{\"data\": {\"field\": \"value\"}}"));
     }
 }
