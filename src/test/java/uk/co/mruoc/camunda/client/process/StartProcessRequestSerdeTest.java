@@ -24,6 +24,7 @@ class StartProcessRequestSerdeTest {
     @Test
     void shouldDeserialize() throws JsonProcessingException {
         StartProcessRequest request = MAPPER.readValue(JSON, StartProcessRequest.class);
+
         assertThat(request)
                 .usingRecursiveComparison()
                 .ignoringFields("processDefinitionKey")
