@@ -1,0 +1,14 @@
+{
+  "inputString": {
+    "type": "string",
+    "value": "hi joe bloggs"
+  },
+  "inputLong": {
+    "type": "long",
+    "value": 0
+  },
+  "inputJson": {
+    "type": "json",
+    "value": "{\"data\": {\"field\": \"value\"}}"
+  }
+}
