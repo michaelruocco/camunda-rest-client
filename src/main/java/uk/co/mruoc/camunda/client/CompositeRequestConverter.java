@@ -8,33 +8,44 @@ import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestConverter;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequestConverter;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestConverter;
+import uk.co.mruoc.camunda.client.header.HeaderPopulator;
+import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
-public class CompositeRequestConverter {
+public class CompositeRequestConverter implements RequestConverter {
 
     private final Collection<RequestConverter> requestConverters;
 
     public CompositeRequestConverter(String baseUri, JsonConverter jsonConverter) {
-        this(buildConverters(baseUri, jsonConverter));
+        this(buildConverters(baseUri, jsonConverter, new NoopHeaderPopulator()));
     }
 
-    private static Collection<RequestConverter> buildConverters(String baseUri, JsonConverter jsonConverter) {
+    public CompositeRequestConverter(String baseUri, JsonConverter jsonConverter, HeaderPopulator headerPopulator) {
+        this(buildConverters(baseUri, jsonConverter, headerPopulator));
+    }
+
+    private static Collection<RequestConverter> buildConverters(
+            String baseUri, JsonConverter jsonConverter, HeaderPopulator headerPopulator) {
         return Arrays.asList(
-                new StartProcessRequestConverter(baseUri, jsonConverter),
-                new CreateDeploymentRequestConverter(baseUri),
-                new GetDeploymentsRequestConverter(baseUri),
-                new DeleteDeploymentRequestConverter(baseUri),
-                new DeliverMessageRequestConverter(baseUri, jsonConverter));
+                new StartProcessRequestConverter(baseUri, jsonConverter, headerPopulator),
+                new CreateDeploymentRequestConverter(baseUri, headerPopulator),
+                new GetDeploymentsRequestConverter(baseUri, headerPopulator),
+                new DeleteDeploymentRequestConverter(baseUri, headerPopulator),
+                new DeliverMessageRequestConverter(baseUri, jsonConverter, headerPopulator));
     }
 
-    public HttpRequest toHttpRequest(Object object) {
+    @Override
+    public Optional<HttpRequest> apply(Object object) {
+        return toHttpRequest(object);
+    }
+
+    public Optional<HttpRequest> toHttpRequest(Object object) {
         return requestConverters.stream()
                 .map(converter -> converter.toHttpRequest(object))
                 .flatMap(Optional::stream)
-                .findFirst()
-                .orElseThrow(() -> new RequestNotSupportedException(object));
+                .findFirst();
     }
 }
