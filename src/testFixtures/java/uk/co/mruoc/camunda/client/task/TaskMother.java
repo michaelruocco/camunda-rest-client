@@ -1,10 +1,9 @@
 package uk.co.mruoc.camunda.client.task;
 
+import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import uk.co.mruoc.camunda.client.OffsetDateTimeParser;
-
-import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TaskMother {

@@ -1,14 +1,13 @@
 package uk.co.mruoc.camunda.client.task;
 
-import org.junit.jupiter.api.Test;
-import uk.co.mruoc.camunda.client.header.HeaderPopulator;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.Test;
+import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 
 class GetTaskByProcessInstanceBusinessKeyRequestConverterTest {
 
@@ -31,11 +30,13 @@ class GetTaskByProcessInstanceBusinessKeyRequestConverterTest {
     @Test
     void shouldReturnHttpRequestWithBusinessKeyAsQueryStringParameter() {
         String businessKey = "test-business-key";
-        GetTaskByProcessInstanceBusinessKeyRequest request = new GetTaskByProcessInstanceBusinessKeyRequest(businessKey);
+        GetTaskByProcessInstanceBusinessKeyRequest request =
+                new GetTaskByProcessInstanceBusinessKeyRequest(businessKey);
 
         Optional<HttpRequest> httpRequest = converter.toHttpRequest(request);
 
         String uri = httpRequest.map(HttpRequest::uri).map(URI::toString).orElse("");
-        assertThat(uri).isEqualTo("http://localhost:7999/engine-rest/task?processInstanceBusinessKey=test-business-key");
+        assertThat(uri)
+                .isEqualTo("http://localhost:7999/engine-rest/task?processInstanceBusinessKey=test-business-key");
     }
 }

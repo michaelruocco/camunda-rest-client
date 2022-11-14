@@ -1,9 +1,8 @@
 package uk.co.mruoc.camunda.client.task;
 
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TasksResponseMother {

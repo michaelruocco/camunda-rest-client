@@ -1,16 +1,15 @@
 package uk.co.mruoc.camunda.client.task;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
-import uk.co.mruoc.camunda.client.ObjectMapperFactory;
-
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
+import org.junit.jupiter.api.Test;
+import uk.co.mruoc.camunda.client.ObjectMapperFactory;
 
 class TasksResponseTest {
     private static final ObjectMapper MAPPER = ObjectMapperFactory.build();
@@ -69,8 +68,6 @@ class TasksResponseTest {
     void shouldDeserialize() throws JsonProcessingException {
         TasksResponse response = MAPPER.readValue(JSON, TasksResponse.class);
 
-        assertThat(response)
-                .usingRecursiveComparison()
-                .isEqualTo(RESPONSE);
+        assertThat(response).usingRecursiveComparison().isEqualTo(RESPONSE);
     }
 }

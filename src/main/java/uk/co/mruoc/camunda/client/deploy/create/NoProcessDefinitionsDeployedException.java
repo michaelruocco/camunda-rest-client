@@ -4,7 +4,6 @@ import uk.co.mruoc.camunda.client.CamundaClientException;
 
 public class NoProcessDefinitionsDeployedException extends CamundaClientException {
 
-    public NoProcessDefinitionsDeployedException() {
-        super();
-    }
+    // intentionally blank
+
 }
