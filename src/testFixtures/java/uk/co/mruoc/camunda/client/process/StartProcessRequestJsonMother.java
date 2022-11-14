@@ -1,6 +1,6 @@
 package uk.co.mruoc.camunda.client.process;
 
-import static uk.co.mruoc.file.content.ContentLoader.loadContentFromClasspath;
+import static uk.co.mruoc.file.FileLoader.loadContentFromClasspath;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

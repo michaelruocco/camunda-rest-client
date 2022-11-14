@@ -28,6 +28,13 @@ public class CreateDeploymentRequestMother {
                 .build();
     }
 
+    public static CreateDeploymentRequest buildMessageWithUserTaskDemoScriptDeploymentRequest() {
+        return builder()
+                .deploymentName("message-with-user-task-demo-deployment")
+                .resources(ResourceMother.buildInlineScriptResources("message-with-user-task-demo.bpmn"))
+                .build();
+    }
+
     public static CreateDeploymentRequestBuilder builder() {
         return CreateDeploymentRequest.builder()
                 .deploymentName("demo-deployment")

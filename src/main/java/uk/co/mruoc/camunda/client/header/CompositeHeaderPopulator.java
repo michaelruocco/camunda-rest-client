@@ -1,17 +1,19 @@
 package uk.co.mruoc.camunda.client.header;
 
 import java.net.http.HttpRequest;
-import java.util.Arrays;
 import java.util.Collection;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
-@RequiredArgsConstructor
 public class CompositeHeaderPopulator implements HeaderPopulator {
 
     private final Collection<HeaderPopulator> populators;
 
     public CompositeHeaderPopulator(HeaderPopulator... populators) {
-        this(Arrays.asList(populators));
+        this(List.of(populators));
+    }
+
+    public CompositeHeaderPopulator(Collection<HeaderPopulator> populators) {
+        this.populators = populators;
     }
 
     @Override

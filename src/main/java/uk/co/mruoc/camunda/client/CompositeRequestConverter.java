@@ -12,6 +12,7 @@ import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
+import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class CompositeRequestConverter implements RequestConverter {
     private final Collection<RequestConverter> requestConverters;
 
     public CompositeRequestConverter(String baseUri, JsonConverter jsonConverter) {
-        this(buildConverters(baseUri, jsonConverter, new NoopHeaderPopulator()));
+        this(baseUri, jsonConverter, new NoopHeaderPopulator());
     }
 
     public CompositeRequestConverter(String baseUri, JsonConverter jsonConverter, HeaderPopulator headerPopulator) {
@@ -34,7 +35,8 @@ public class CompositeRequestConverter implements RequestConverter {
                 new CreateDeploymentRequestConverter(baseUri, headerPopulator),
                 new GetDeploymentsRequestConverter(baseUri, headerPopulator),
                 new DeleteDeploymentRequestConverter(baseUri, headerPopulator),
-                new DeliverMessageRequestConverter(baseUri, jsonConverter, headerPopulator));
+                new DeliverMessageRequestConverter(baseUri, jsonConverter, headerPopulator),
+                new GetTaskByProcessInstanceBusinessKeyRequestConverter(baseUri, headerPopulator));
     }
 
     @Override
@@ -42,6 +44,7 @@ public class CompositeRequestConverter implements RequestConverter {
         return toHttpRequest(object);
     }
 
+    @Override
     public Optional<HttpRequest> toHttpRequest(Object object) {
         return requestConverters.stream()
                 .map(converter -> converter.toHttpRequest(object))

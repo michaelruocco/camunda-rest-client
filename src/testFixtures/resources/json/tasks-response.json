@@ -1,0 +1,27 @@
+[
+  {
+    "id": "c4ebe304-6409-11ed-8669-52a355e7889c",
+    "name": "task task name",
+    "assignee": null,
+    "created": "2022-11-14T10:59:37.387Z",
+    "due": "2022-11-15T10:59:37.387Z",
+    "lastUpdated": null,
+    "followUp": null,
+    "delegationState": null,
+    "description": null,
+    "executionId": "c4e8fcce-6409-11ed-8669-52a355e7889c",
+    "owner": null,
+    "parentTaskId": null,
+    "priority": 150,
+    "processDefinitionId": "test-process:1:ea6e6b99-0d16-11ed-845a-0ebf23a48bbc",
+    "processInstanceId": "d0b94249-22cf-11ed-91cc-3a295e9d2072",
+    "taskDefinitionKey": "test-task",
+    "caseExecutionId": null,
+    "caseInstanceId": null,
+    "caseDefinitionId": null,
+    "suspended": false,
+    "formKey": "test-task",
+    "camundaFormRef": null,
+    "tenantId": null
+  }
+]
