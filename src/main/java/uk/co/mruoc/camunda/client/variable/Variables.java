@@ -7,9 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @JsonSerialize(using = VariablesSerializer.class)
 @JsonDeserialize(using = VariablesDeserializer.class)
 public class Variables implements Iterable<Variable> {
@@ -18,6 +16,10 @@ public class Variables implements Iterable<Variable> {
 
     public Variables(Variable... values) {
         this(List.of(values));
+    }
+
+    public Variables(Collection<Variable> values) {
+        this.values = values;
     }
 
     @JsonIgnore

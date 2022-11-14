@@ -1,6 +1,5 @@
 package uk.co.mruoc.camunda.client.task;
 
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +11,7 @@ public class TasksResponseMother {
     }
 
     public static TasksResponse withTasks(Task... tasks) {
-        return new TasksResponse(List.of(tasks));
+        return new TasksResponse(tasks);
     }
 
     public static TasksResponse build() {

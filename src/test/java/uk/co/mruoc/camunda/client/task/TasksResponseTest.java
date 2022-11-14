@@ -3,19 +3,12 @@ package uk.co.mruoc.camunda.client.task;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
-import uk.co.mruoc.camunda.client.ObjectMapperFactory;
 
 class TasksResponseTest {
-    private static final ObjectMapper MAPPER = ObjectMapperFactory.build();
-
-    private static final TasksResponse RESPONSE = TasksResponseMother.build();
-    private static final String JSON = TasksResponseJsonMother.build();
 
     @Test
     void shouldReturnEmptyFirstTaskIfNoTasksPresent() {
@@ -33,6 +26,16 @@ class TasksResponseTest {
         Throwable error = catchThrowable(response::forceGetFirstTask);
 
         assertThat(error).isInstanceOf(NoTasksPresentException.class);
+    }
+
+    @Test
+    void shouldReturnFirstTaskIfPresent() {
+        Task expectedTask = TaskMother.build();
+        TasksResponse response = TasksResponseMother.withTasks(expectedTask);
+
+        Task task = response.forceGetFirstTask();
+
+        assertThat(task).usingRecursiveComparison().isEqualTo(expectedTask);
     }
 
     @Test
@@ -62,12 +65,5 @@ class TasksResponseTest {
         Collection<UUID> ids = response.getTaskIds();
 
         assertThat(ids).containsExactly(task1.getId(), task2.getId());
-    }
-
-    @Test
-    void shouldDeserialize() throws JsonProcessingException {
-        TasksResponse response = MAPPER.readValue(JSON, TasksResponse.class);
-
-        assertThat(response).usingRecursiveComparison().isEqualTo(RESPONSE);
     }
 }

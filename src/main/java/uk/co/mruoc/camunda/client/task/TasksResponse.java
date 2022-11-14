@@ -9,10 +9,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Builder
-@RequiredArgsConstructor
 @Data
 @JsonDeserialize(using = TasksResponseDeserializer.class)
 @JsonSerialize(using = TasksResponseSerializer.class)
@@ -22,6 +20,10 @@ public class TasksResponse {
 
     public TasksResponse(Task... tasks) {
         this(List.of(tasks));
+    }
+
+    public TasksResponse(Collection<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public int getNumberOfTasks() {
