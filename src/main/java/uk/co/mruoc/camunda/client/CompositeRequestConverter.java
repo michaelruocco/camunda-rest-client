@@ -44,6 +44,7 @@ public class CompositeRequestConverter implements RequestConverter {
         return toHttpRequest(object);
     }
 
+    @Override
     public Optional<HttpRequest> toHttpRequest(Object object) {
         return requestConverters.stream()
                 .map(converter -> converter.toHttpRequest(object))
