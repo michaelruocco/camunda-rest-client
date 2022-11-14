@@ -12,6 +12,8 @@ import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
+import uk.co.mruoc.camunda.client.task.CamundaTasksResponse;
+import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.json.JsonConverter;
 import uk.co.mruoc.json.jackson.JacksonJsonConverter;
 
@@ -68,6 +70,12 @@ public class CamundaClient {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         responseConverter.throwErrorIfRequired(response);
+    }
+
+    public CamundaTasksResponse getTask(GetTaskByProcessInstanceBusinessKeyRequest request) {
+        HttpRequest httpRequest = toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        return responseConverter.toTypeOrThrowError(response, CamundaTasksResponse.class);
     }
 
     private HttpRequest toHttpRequest(Object object) {

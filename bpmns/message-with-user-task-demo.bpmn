@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ztsws3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="message-demo" name="message-demo" isExecutable="true">
+    <bpmn:scriptTask id="log-message-received" name="log-message-received" scriptFormat="groovy">
+      <bpmn:incoming>Flow_0uzf7qw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aboagw</bpmn:outgoing>
+      <bpmn:script>import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+Logger logger = LoggerFactory.getLogger(this.getClass())
+
+def inputMessage = execution.getVariable("inputMessage")
+logger.info("message received {}", inputMessage)</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="message-with-user-task-demo-end" name="message-with-user-task-demo-end">
+      <bpmn:incoming>Flow_0qc0xb6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1aboagw" sourceRef="log-message-received" targetRef="user-task" />
+    <bpmn:sequenceFlow id="Flow_0qc0xb6" sourceRef="user-task" targetRef="message-with-user-task-demo-end" />
+    <bpmn:userTask id="user-task" name="user-task">
+      <bpmn:incoming>Flow_1aboagw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qc0xb6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="receive-message-for-user-task" name="receive-message-for-user-task" camunda:initiator="receive-message-for-user-task">
+      <bpmn:outgoing>Flow_0uzf7qw</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0y5emw2" messageRef="Message_0ekkxea" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0uzf7qw" sourceRef="receive-message-for-user-task" targetRef="log-message-received" />
+  </bpmn:process>
+  <bpmn:message id="Message_0ekkxea" name="receive-message-for-user-task" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="message-demo">
+      <bpmndi:BPMNEdge id="Flow_1aboagw_di" bpmnElement="Flow_1aboagw">
+        <di:waypoint x="360" y="117" />
+        <di:waypoint x="420" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qc0xb6_di" bpmnElement="Flow_0qc0xb6">
+        <di:waypoint x="520" y="117" />
+        <di:waypoint x="572" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uzf7qw_di" bpmnElement="Flow_0uzf7qw">
+        <di:waypoint x="198" y="117" />
+        <di:waypoint x="260" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_0q89d6q_di" bpmnElement="log-message-received">
+        <dc:Bounds x="260" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_150mjaz_di" bpmnElement="user-task">
+        <dc:Bounds x="420" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jwo4by_di" bpmnElement="message-with-user-task-demo-end">
+        <dc:Bounds x="572" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="550" y="142" width="81" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0q6eaqr_di" bpmnElement="receive-message-for-user-task">
+        <dc:Bounds x="162" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="136" y="142" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

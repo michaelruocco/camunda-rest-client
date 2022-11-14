@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildExternalScriptDeploymentRequest;
 import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
 import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildMessageDemoScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildMessageWithUserTaskDemoScriptDeploymentRequest;
 
 import java.util.UUID;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
@@ -22,6 +23,9 @@ import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
+import uk.co.mruoc.camunda.client.task.CamundaTask;
+import uk.co.mruoc.camunda.client.task.CamundaTasksResponse;
+import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.camunda.client.variable.JsonVariable;
 import uk.co.mruoc.camunda.client.variable.Variables;
 
@@ -94,6 +98,24 @@ class CamundaClientIntegrationTest {
         ThrowingCallable call = () -> client.deliverMessage(messageRequest);
 
         assertThatCode(call).doesNotThrowAnyException();
+    }
+
+    @Test
+    void shouldGetUserTaskForRunningProcess() {
+        givenBpmnIsDeployed(buildMessageWithUserTaskDemoScriptDeploymentRequest());
+        String businessKey = "xyz-789";
+        DeliverMessageRequest messageRequest = DeliverMessageRequest.builder()
+                .messageName("receive-message-for-user-task")
+                .businessKey(businessKey)
+                .processVariables(new Variables(new JsonVariable("messageInput", "{\"value\":\"hello\"}")))
+                .build();
+        client.deliverMessage(messageRequest);
+        GetTaskByProcessInstanceBusinessKeyRequest request =
+                new GetTaskByProcessInstanceBusinessKeyRequest(businessKey);
+
+        CamundaTasksResponse response = client.getTask(request);
+
+        assertThat(response.getFirstTask()).map(CamundaTask::getId).isNotNull();
     }
 
     private static CreateDeploymentResponse givenBpmnIsDeployed() {
