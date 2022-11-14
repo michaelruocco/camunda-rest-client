@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.deploy.create;
+package uk.co.mruoc.camunda.client;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;

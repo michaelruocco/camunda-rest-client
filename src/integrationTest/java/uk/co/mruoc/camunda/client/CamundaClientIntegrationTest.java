@@ -23,8 +23,8 @@ import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
-import uk.co.mruoc.camunda.client.task.CamundaTask;
-import uk.co.mruoc.camunda.client.task.CamundaTasksResponse;
+import uk.co.mruoc.camunda.client.task.Task;
+import uk.co.mruoc.camunda.client.task.TasksResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.camunda.client.variable.JsonVariable;
 import uk.co.mruoc.camunda.client.variable.Variables;
@@ -113,9 +113,9 @@ class CamundaClientIntegrationTest {
         GetTaskByProcessInstanceBusinessKeyRequest request =
                 new GetTaskByProcessInstanceBusinessKeyRequest(businessKey);
 
-        CamundaTasksResponse response = client.getTask(request);
+        TasksResponse response = client.getTask(request);
 
-        assertThat(response.getFirstTask()).map(CamundaTask::getId).isNotNull();
+        assertThat(response.getFirstTask()).map(Task::getId).isNotNull();
     }
 
     private static CreateDeploymentResponse givenBpmnIsDeployed() {

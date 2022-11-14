@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 @Data
-public class CamundaTask {
+public class Task {
 
     private final UUID id;
     private final String name;
@@ -20,7 +20,7 @@ public class CamundaTask {
     private final OffsetDateTime due;
     private final OffsetDateTime followUp;
     private final OffsetDateTime lastUpdated;
-    private final CamundaTaskDelegationState delegationState;
+    private final TaskDelegationState delegationState;
     private final String description;
     private final UUID executionId;
     private final String owner;

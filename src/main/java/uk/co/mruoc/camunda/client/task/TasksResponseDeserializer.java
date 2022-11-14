@@ -9,19 +9,19 @@ import java.util.Collection;
 import uk.co.mruoc.json.jackson.JsonNodeConverter;
 import uk.co.mruoc.json.jackson.JsonParserConverter;
 
-public class CamundaTasksResponseDeserializer extends StdDeserializer<CamundaTasksResponse> {
+public class TasksResponseDeserializer extends StdDeserializer<TasksResponse> {
 
-    private static final TypeReference<Collection<CamundaTask>> TASK_COLLECTION = new TypeReference<>() {
+    private static final TypeReference<Collection<Task>> TASK_COLLECTION = new TypeReference<>() {
                 // intentionally blank
             };
 
-    protected CamundaTasksResponseDeserializer() {
-        super(CamundaTasksResponse.class);
+    protected TasksResponseDeserializer() {
+        super(TasksResponse.class);
     }
 
     @Override
-    public CamundaTasksResponse deserialize(JsonParser parser, DeserializationContext context) {
+    public TasksResponse deserialize(JsonParser parser, DeserializationContext context) {
         JsonNode node = JsonParserConverter.toNode(parser);
-        return new CamundaTasksResponse(JsonNodeConverter.toCollection(node, parser, TASK_COLLECTION));
+        return new TasksResponse(JsonNodeConverter.toCollection(node, parser, TASK_COLLECTION));
     }
 }

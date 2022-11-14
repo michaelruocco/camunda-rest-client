@@ -4,7 +4,7 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import uk.co.mruoc.camunda.client.LinkMother;
-import uk.co.mruoc.camunda.client.deploy.create.OffsetDateTimeParser;
+import uk.co.mruoc.camunda.client.OffsetDateTimeParser;
 import uk.co.mruoc.camunda.client.deploy.get.Deployment.DeploymentBuilder;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

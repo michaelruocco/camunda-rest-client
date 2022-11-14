@@ -1,6 +1,8 @@
 package uk.co.mruoc.camunda.client.variable;
 
-public class VariableTypeUnsupportedException extends RuntimeException {
+import uk.co.mruoc.camunda.client.CamundaClientException;
+
+public class VariableTypeUnsupportedException extends CamundaClientException {
 
     public VariableTypeUnsupportedException(String message) {
         super(message);
