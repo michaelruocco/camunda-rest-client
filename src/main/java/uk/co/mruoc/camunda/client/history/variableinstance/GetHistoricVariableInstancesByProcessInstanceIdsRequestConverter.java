@@ -2,6 +2,7 @@ package uk.co.mruoc.camunda.client.history.variableinstance;
 
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.CONTENT_TYPE_NAME;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -40,7 +41,8 @@ public class GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter im
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
-        return builder.header(ACCEPT_NAME, APPLICATION_JSON)
+        return builder.header(CONTENT_TYPE_NAME, APPLICATION_JSON)
+                .header(ACCEPT_NAME, APPLICATION_JSON)
                 .uri(getUri())
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();

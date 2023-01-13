@@ -1,5 +1,6 @@
 package uk.co.mruoc.camunda.client.processinstance;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProcessInstance {
 
     private final String id;

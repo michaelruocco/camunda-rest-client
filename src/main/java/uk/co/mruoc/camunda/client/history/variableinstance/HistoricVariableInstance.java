@@ -1,5 +1,6 @@
 package uk.co.mruoc.camunda.client.history.variableinstance;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Builder
 @JsonDeserialize(using = HistoricVariableInstanceDeserializer.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HistoricVariableInstance<T> {
 
     private final String id;

@@ -14,5 +14,5 @@ public class GetHistoricVariableInstancesByProcessInstanceIdsRequest {
 
     private final Collection<String> processInstanceIdIn;
     private final String variableNameIn;
-    private final boolean deserializeValues = false;
+    private final boolean deserializeValues;
 }

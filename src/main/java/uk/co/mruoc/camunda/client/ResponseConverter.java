@@ -40,6 +40,7 @@ public class ResponseConverter {
 
     private boolean isSuccessful(HttpResponse<String> response) {
         var status = response.statusCode();
+        log.info("status: " + status);
         return status >= 200 && status <= 299;
     }
 }
