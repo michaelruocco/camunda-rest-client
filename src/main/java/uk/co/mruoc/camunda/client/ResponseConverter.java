@@ -2,7 +2,6 @@ package uk.co.mruoc.camunda.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.net.http.HttpResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,14 +41,5 @@ public class ResponseConverter {
     private boolean isSuccessful(HttpResponse<String> response) {
         var status = response.statusCode();
         return status >= 200 && status <= 299;
-    }
-
-    private <T> TypeReference<T> toTypeReference(Class<T> type) {
-        return new TypeReference<T>() {
-            @Override
-            public Type getType() {
-                return type;
-            }
-        };
     }
 }
