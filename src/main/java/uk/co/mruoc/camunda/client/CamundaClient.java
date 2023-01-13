@@ -99,7 +99,7 @@ public class CamundaClient {
     }
 
     public <T> HistoricVariableInstancesResponse<T> getHistoricVariableInstances(
-            GetHistoricVariableInstancesByProcessInstanceIdsRequest request, Class<T> variableType) {
+            GetHistoricVariableInstancesByProcessInstanceIdsRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(
