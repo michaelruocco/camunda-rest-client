@@ -14,6 +14,8 @@ import uk.co.mruoc.camunda.client.history.processinstance.HistoricProcessInstanc
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
+import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequest;
+import uk.co.mruoc.camunda.client.processinstance.ProcessInstancesResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.camunda.client.task.TasksResponse;
 import uk.co.mruoc.json.JsonConverter;
@@ -80,7 +82,13 @@ public class CamundaClient {
         return responseConverter.toTypeOrThrowError(response, TasksResponse.class);
     }
 
-    public HistoricProcessInstancesResponse getHistoricTasks(GetHistoricProcessInstancesByBusinessKeysRequest request) {
+    public ProcessInstancesResponse getProcessInstances(GetProcessInstancesByBusinessKeyRequest request) {
+        HttpRequest httpRequest = toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        return responseConverter.toTypeOrThrowError(response, ProcessInstancesResponse.class);
+    }
+
+    public HistoricProcessInstancesResponse getHistoricProcessInstances(GetHistoricProcessInstancesByBusinessKeysRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, HistoricProcessInstancesResponse.class);
