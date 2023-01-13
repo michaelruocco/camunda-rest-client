@@ -1,12 +1,13 @@
 package uk.co.mruoc.camunda.client.history.processinstance;
 
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
+import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
+
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import uk.co.mruoc.camunda.client.RequestConverter;
-import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
-import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
@@ -45,8 +46,7 @@ public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implement
     }
 
     private URI getUri() {
-        String uri =
-                String.format("%s/engine-rest/history/process-instance", baseUri);
+        String uri = String.format("%s/engine-rest/history/process-instance", baseUri);
         return URI.create(uri);
     }
 

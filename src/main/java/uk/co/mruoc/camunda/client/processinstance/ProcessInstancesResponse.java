@@ -25,10 +25,6 @@ public class ProcessInstancesResponse implements Iterable<ProcessInstance> {
 
     @JsonIgnore
     public Map<String, String> getBusinessKeyToProcessInstanceIdMap() {
-        return values.stream()
-                .collect(
-                        Collectors.toMap(
-                                ProcessInstance::getBusinessKey,
-                                ProcessInstance::getId));
+        return values.stream().collect(Collectors.toMap(ProcessInstance::getBusinessKey, ProcessInstance::getId));
     }
 }

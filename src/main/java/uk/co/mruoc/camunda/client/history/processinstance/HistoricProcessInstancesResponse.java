@@ -26,9 +26,6 @@ public class HistoricProcessInstancesResponse implements Iterable<HistoricProces
     @JsonIgnore
     public Map<String, String> getBusinessKeyToProcessInstanceIdMap() {
         return values.stream()
-                .collect(
-                        Collectors.toMap(
-                                HistoricProcessInstance::getBusinessKey,
-                                HistoricProcessInstance::getId));
+                .collect(Collectors.toMap(HistoricProcessInstance::getBusinessKey, HistoricProcessInstance::getId));
     }
 }

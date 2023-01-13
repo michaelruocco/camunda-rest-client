@@ -1,5 +1,6 @@
 package uk.co.mruoc.camunda.client;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import lombok.Builder;
@@ -11,6 +12,8 @@ import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.history.processinstance.GetHistoricProcessInstancesByBusinessKeysRequest;
 import uk.co.mruoc.camunda.client.history.processinstance.HistoricProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.history.variableinstance.GetHistoricVariableInstancesByProcessInstanceIdsRequest;
+import uk.co.mruoc.camunda.client.history.variableinstance.HistoricVariableInstancesResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
@@ -88,10 +91,19 @@ public class CamundaClient {
         return responseConverter.toTypeOrThrowError(response, ProcessInstancesResponse.class);
     }
 
-    public HistoricProcessInstancesResponse getHistoricProcessInstances(GetHistoricProcessInstancesByBusinessKeysRequest request) {
+    public HistoricProcessInstancesResponse getHistoricProcessInstances(
+            GetHistoricProcessInstancesByBusinessKeysRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, HistoricProcessInstancesResponse.class);
+    }
+
+    public <T> HistoricVariableInstancesResponse<T> getHistoricVariableInstances(
+            GetHistoricVariableInstancesByProcessInstanceIdsRequest request, Class<T> variableType) {
+        HttpRequest httpRequest = toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        return responseConverter.toTypeOrThrowError(
+                response, new TypeReference<HistoricVariableInstancesResponse<T>>() {});
     }
 
     private HttpRequest toHttpRequest(Object object) {
