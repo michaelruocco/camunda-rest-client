@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.history.processinstance;
+package uk.co.mruoc.camunda.client.history.process;
 
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;

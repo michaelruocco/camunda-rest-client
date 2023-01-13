@@ -1,5 +1,6 @@
 package uk.co.mruoc.camunda.client.deploy.get;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,8 +20,12 @@ public class GetDeploymentsRequest {
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSxxxx");
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSxx")
     private final OffsetDateTime before;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSxx")
     private final OffsetDateTime after;
+
     private final String overrideBaseUri;
 
     public String toQueryString() {

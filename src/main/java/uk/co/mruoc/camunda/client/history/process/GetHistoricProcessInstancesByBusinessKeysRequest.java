@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.history.processinstance;
+package uk.co.mruoc.camunda.client.history.process;
 
 import java.util.Collection;
 import lombok.Builder;

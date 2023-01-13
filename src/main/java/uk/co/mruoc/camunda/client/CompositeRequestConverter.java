@@ -10,8 +10,8 @@ import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequestConverter
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestConverter;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
-import uk.co.mruoc.camunda.client.history.processinstance.GetHistoricProcessInstancesByBusinessKeysRequestConverter;
-import uk.co.mruoc.camunda.client.history.variableinstance.GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter;
+import uk.co.mruoc.camunda.client.history.process.GetHistoricProcessInstancesByBusinessKeysRequestConverter;
+import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
 import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequestConverter;

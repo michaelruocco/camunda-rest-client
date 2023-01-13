@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.history.variableinstance;
+package uk.co.mruoc.camunda.client.history.variable;
 
 import java.util.Collection;
 import lombok.Builder;

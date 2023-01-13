@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class OffsetDateTimeParser {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSxx");
 
     public static OffsetDateTime parse(String text) {
         return OffsetDateTime.parse(text, DATE_TIME_FORMATTER);
