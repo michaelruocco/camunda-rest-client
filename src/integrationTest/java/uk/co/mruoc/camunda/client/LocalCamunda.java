@@ -18,9 +18,9 @@ public class LocalCamunda extends GenericContainer<LocalCamunda> {
     }
 
     public String getUri() {
-        String ip = getContainerIpAddress();
+        String host = getHost();
         int port = getMappedPort(PORT);
-        return String.format("http://%s:%d", ip, port);
+        return String.format("http://%s:%d", host, port);
     }
 
     private void logInfo(OutputFrame frame) {
