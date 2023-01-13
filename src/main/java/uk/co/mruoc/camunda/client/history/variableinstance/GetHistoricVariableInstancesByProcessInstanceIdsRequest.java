@@ -13,6 +13,6 @@ import lombok.RequiredArgsConstructor;
 public class GetHistoricVariableInstancesByProcessInstanceIdsRequest {
 
     private final Collection<String> processInstanceIdIn;
-    private final String variableNameIn;
+    private final Collection<String> variableNameIn;
     private final boolean deserializeValues;
 }
