@@ -46,7 +46,7 @@ public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implement
 
     private URI getUri() {
         String uri =
-                String.format("%s/engine-rest/history/task", baseUri);
+                String.format("%s/engine-rest/history/process-instance", baseUri);
         return URI.create(uri);
     }
 
