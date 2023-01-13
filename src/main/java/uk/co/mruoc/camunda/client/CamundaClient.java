@@ -9,6 +9,8 @@ import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
+import uk.co.mruoc.camunda.client.history.processinstance.GetHistoricProcessInstancesByBusinessKeysRequest;
+import uk.co.mruoc.camunda.client.history.processinstance.HistoricProcessInstancesResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
@@ -76,6 +78,12 @@ public class CamundaClient {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, TasksResponse.class);
+    }
+
+    public HistoricProcessInstancesResponse getHistoricTasks(GetHistoricProcessInstancesByBusinessKeysRequest request) {
+        HttpRequest httpRequest = toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        return responseConverter.toTypeOrThrowError(response, HistoricProcessInstancesResponse.class);
     }
 
     private HttpRequest toHttpRequest(Object object) {
