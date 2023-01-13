@@ -1,7 +1,6 @@
 package uk.co.mruoc.camunda.client.history.variableinstance;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JavaType;
@@ -38,7 +37,7 @@ public class HistoricVariableInstanceDeserializer extends JsonDeserializer<Histo
 
     @Override
     public HistoricVariableInstance<?> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-            throws IOException, JsonProcessingException {
+            throws IOException {
         JsonNode json = deserializationContext.readTree(jsonParser);
         String valueText = StringEscapeUtils.unescapeJson(json.get("value").asText());
 
