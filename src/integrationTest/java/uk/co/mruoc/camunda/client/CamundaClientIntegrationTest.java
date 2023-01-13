@@ -6,7 +6,9 @@ import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMo
 import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildInlineScriptDeploymentRequest;
 import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildMessageDemoScriptDeploymentRequest;
 import static uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentRequestMother.buildMessageWithUserTaskDemoScriptDeploymentRequest;
+import static uk.co.mruoc.camunda.client.message.DeliverMessageRequestMother.buildDelierMessageRequest;
 
+import java.util.Collections;
 import java.util.UUID;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,6 +25,9 @@ import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.StartProcessResponse;
+import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequest;
+import uk.co.mruoc.camunda.client.processinstance.ProcessInstance;
+import uk.co.mruoc.camunda.client.processinstance.ProcessInstancesResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.camunda.client.task.Task;
 import uk.co.mruoc.camunda.client.task.TasksResponse;
@@ -118,11 +123,33 @@ class CamundaClientIntegrationTest {
         assertThat(response.getFirstTask()).map(Task::getId).isNotNull();
     }
 
+    @Test
+    void shouldGetProcessInstanceForTask() {
+        givenBpmnIsDeployed(buildMessageWithUserTaskDemoScriptDeploymentRequest());
+        String businessKey = "abc-def-123";
+        givenTaskIsCreated(businessKey);
+
+        GetProcessInstancesByBusinessKeyRequest request = GetProcessInstancesByBusinessKeyRequest.builder()
+                .businessKey(businessKey)
+                .processDefinitionKeyNotIn(Collections.emptyList())
+                .build();
+
+        ProcessInstancesResponse response = client.getProcessInstances(request);
+
+        assertThat(response.getNumberOfProcessInstances()).isEqualTo(1);
+        assertThat(response.getFirstProcessInstance().map(ProcessInstance::getId))
+                .isNotNull();
+    }
+
     private static CreateDeploymentResponse givenBpmnIsDeployed() {
         return givenBpmnIsDeployed(buildExternalScriptDeploymentRequest());
     }
 
     private static CreateDeploymentResponse givenBpmnIsDeployed(CreateDeploymentRequest request) {
         return client.createDeployment(request);
+    }
+
+    private static void givenTaskIsCreated(String businessKey) {
+        client.deliverMessage(buildDelierMessageRequest(businessKey));
     }
 }

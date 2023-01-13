@@ -10,8 +10,11 @@ import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequestConverter
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestConverter;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
+import uk.co.mruoc.camunda.client.history.processinstance.GetHistoricProcessInstancesByBusinessKeysRequestConverter;
+import uk.co.mruoc.camunda.client.history.variableinstance.GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
+import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequestConverter;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
 
@@ -36,7 +39,11 @@ public class CompositeRequestConverter implements RequestConverter {
                 new GetDeploymentsRequestConverter(baseUri, headerPopulator),
                 new DeleteDeploymentRequestConverter(baseUri, headerPopulator),
                 new DeliverMessageRequestConverter(baseUri, jsonConverter, headerPopulator),
-                new GetTaskByProcessInstanceBusinessKeyRequestConverter(baseUri, headerPopulator));
+                new GetTaskByProcessInstanceBusinessKeyRequestConverter(baseUri, headerPopulator),
+                new GetProcessInstancesByBusinessKeyRequestConverter(baseUri, jsonConverter, headerPopulator),
+                new GetHistoricProcessInstancesByBusinessKeysRequestConverter(baseUri, jsonConverter, headerPopulator),
+                new GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter(
+                        baseUri, jsonConverter, headerPopulator));
     }
 
     @Override

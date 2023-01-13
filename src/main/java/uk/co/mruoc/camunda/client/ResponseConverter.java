@@ -1,5 +1,7 @@
 package uk.co.mruoc.camunda.client;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.reflect.ParameterizedType;
 import java.net.http.HttpResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +20,11 @@ public class ResponseConverter {
         }
     }
 
+    public <T> T toTypeOrThrowError(HttpResponse<String> response, TypeReference<T> type) {
+        Class<T> clazz = (Class<T>) ((ParameterizedType) type.getType()).getRawType();
+        return toTypeOrThrowError(response, clazz);
+    }
+
     public <T> T toTypeOrThrowError(HttpResponse<String> response, Class<T> type) {
         log(response);
         String body = response.body();
@@ -33,6 +40,7 @@ public class ResponseConverter {
 
     private boolean isSuccessful(HttpResponse<String> response) {
         var status = response.statusCode();
+        log.info("status: " + status);
         return status >= 200 && status <= 299;
     }
 }
