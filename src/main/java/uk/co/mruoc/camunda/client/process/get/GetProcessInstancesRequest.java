@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Data
 @Builder
-public class GetProcessInstancesByBusinessKeyRequest {
+public class GetProcessInstancesRequest {
 
     private final String businessKey;
     private final Collection<String> processDefinitionKeyNotIn;

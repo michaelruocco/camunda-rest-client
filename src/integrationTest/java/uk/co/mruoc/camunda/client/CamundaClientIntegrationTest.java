@@ -23,7 +23,7 @@ import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestMother;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
-import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesByBusinessKeyRequest;
+import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesRequest;
 import uk.co.mruoc.camunda.client.process.get.ProcessInstance;
 import uk.co.mruoc.camunda.client.process.get.ProcessInstancesResponse;
 import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
@@ -129,7 +129,7 @@ class CamundaClientIntegrationTest {
         String businessKey = "abc-def-123";
         givenTaskIsCreated(businessKey);
 
-        GetProcessInstancesByBusinessKeyRequest request = GetProcessInstancesByBusinessKeyRequest.builder()
+        GetProcessInstancesRequest request = GetProcessInstancesRequest.builder()
                 .businessKey(businessKey)
                 .processDefinitionKeyNotIn(Collections.emptyList())
                 .build();

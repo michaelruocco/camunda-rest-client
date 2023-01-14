@@ -9,12 +9,12 @@ import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
-import uk.co.mruoc.camunda.client.history.process.GetHistoricProcessInstancesByBusinessKeysRequest;
+import uk.co.mruoc.camunda.client.history.process.GetHistoricProcessInstancesRequest;
 import uk.co.mruoc.camunda.client.history.process.HistoricProcessInstancesResponse;
-import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesByProcessInstanceIdsRequest;
+import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesRequest;
 import uk.co.mruoc.camunda.client.history.variable.HistoricVariableInstancesResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
-import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesByBusinessKeyRequest;
+import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesRequest;
 import uk.co.mruoc.camunda.client.process.get.ProcessInstancesResponse;
 import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.start.StartProcessResponse;
@@ -84,21 +84,19 @@ public class CamundaClient {
         return responseConverter.toTypeOrThrowError(response, TasksResponse.class);
     }
 
-    public ProcessInstancesResponse getProcessInstances(GetProcessInstancesByBusinessKeyRequest request) {
+    public ProcessInstancesResponse getProcessInstances(GetProcessInstancesRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, ProcessInstancesResponse.class);
     }
 
-    public HistoricProcessInstancesResponse getHistoricProcessInstances(
-            GetHistoricProcessInstancesByBusinessKeysRequest request) {
+    public HistoricProcessInstancesResponse getHistoricProcessInstances(GetHistoricProcessInstancesRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, HistoricProcessInstancesResponse.class);
     }
 
-    public HistoricVariableInstancesResponse getHistoricVariableInstances(
-            GetHistoricVariableInstancesByProcessInstanceIdsRequest request) {
+    public HistoricVariableInstancesResponse getHistoricVariableInstances(GetHistoricVariableInstancesRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, HistoricVariableInstancesResponse.class);

@@ -29,14 +29,14 @@ public class GetProcessInstancesByBusinessKeyRequestConverter implements Request
         return toRequest(object).map(this::toHttpRequest);
     }
 
-    private Optional<GetProcessInstancesByBusinessKeyRequest> toRequest(Object object) {
-        if (object instanceof GetProcessInstancesByBusinessKeyRequest) {
-            return Optional.of((GetProcessInstancesByBusinessKeyRequest) object);
+    private Optional<GetProcessInstancesRequest> toRequest(Object object) {
+        if (object instanceof GetProcessInstancesRequest) {
+            return Optional.of((GetProcessInstancesRequest) object);
         }
         return Optional.empty();
     }
 
-    private HttpRequest toHttpRequest(GetProcessInstancesByBusinessKeyRequest request) {
+    private HttpRequest toHttpRequest(GetProcessInstancesRequest request) {
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);

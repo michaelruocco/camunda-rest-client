@@ -76,6 +76,7 @@ dependencies {
     integrationTestAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     integrationTestImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
     integrationTestImplementation "org.testcontainers:testcontainers:${testContainersVersion}"
+    integrationTestImplementation "org.testcontainers:mockserver:${testContainersVersion}"
     integrationTestImplementation "junit:junit:4.13.2"
 
     testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"

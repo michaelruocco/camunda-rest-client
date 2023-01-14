@@ -1,5 +1,6 @@
 package uk.co.mruoc.camunda.client.history.variable;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Collection;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +11,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Builder
 @Data
-public class GetHistoricVariableInstancesByProcessInstanceIdsRequest {
+public class GetHistoricVariableInstancesRequest {
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final Collection<String> processInstanceIdIn;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final Collection<String> variableNameIn;
+
     private final boolean deserializeValues;
 }

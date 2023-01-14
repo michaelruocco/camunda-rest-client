@@ -14,13 +14,13 @@ import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
-public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implements RequestConverter {
+public class GetHistoricProcessInstancesRequestConverter implements RequestConverter {
 
     private final String baseUri;
     private final JsonConverter jsonConverter;
     private final HeaderPopulator headerPopulator;
 
-    public GetHistoricProcessInstancesByBusinessKeysRequestConverter(String baseUri, JsonConverter jsonConverter) {
+    public GetHistoricProcessInstancesRequestConverter(String baseUri, JsonConverter jsonConverter) {
         this(baseUri, jsonConverter, defaultHeaderPopulator());
     }
 
@@ -29,14 +29,14 @@ public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implement
         return toRequest(object).map(this::toHttpRequest);
     }
 
-    private Optional<GetHistoricProcessInstancesByBusinessKeysRequest> toRequest(Object object) {
-        if (object instanceof GetHistoricProcessInstancesByBusinessKeysRequest) {
-            return Optional.of((GetHistoricProcessInstancesByBusinessKeysRequest) object);
+    private Optional<GetHistoricProcessInstancesRequest> toRequest(Object object) {
+        if (object instanceof GetHistoricProcessInstancesRequest) {
+            return Optional.of((GetHistoricProcessInstancesRequest) object);
         }
         return Optional.empty();
     }
 
-    private HttpRequest toHttpRequest(GetHistoricProcessInstancesByBusinessKeysRequest request) {
+    private HttpRequest toHttpRequest(GetHistoricProcessInstancesRequest request) {
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);

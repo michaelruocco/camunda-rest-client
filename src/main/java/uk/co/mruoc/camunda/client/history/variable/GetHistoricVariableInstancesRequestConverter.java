@@ -14,14 +14,13 @@ import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
-public class GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter implements RequestConverter {
+public class GetHistoricVariableInstancesRequestConverter implements RequestConverter {
 
     private final String baseUri;
     private final JsonConverter jsonConverter;
     private final HeaderPopulator headerPopulator;
 
-    public GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter(
-            String baseUri, JsonConverter jsonConverter) {
+    public GetHistoricVariableInstancesRequestConverter(String baseUri, JsonConverter jsonConverter) {
         this(baseUri, jsonConverter, defaultHeaderPopulator());
     }
 
@@ -30,14 +29,14 @@ public class GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter im
         return toRequest(object).map(this::toHttpRequest);
     }
 
-    private Optional<GetHistoricVariableInstancesByProcessInstanceIdsRequest> toRequest(Object object) {
-        if (object instanceof GetHistoricVariableInstancesByProcessInstanceIdsRequest) {
-            return Optional.of((GetHistoricVariableInstancesByProcessInstanceIdsRequest) object);
+    private Optional<GetHistoricVariableInstancesRequest> toRequest(Object object) {
+        if (object instanceof GetHistoricVariableInstancesRequest) {
+            return Optional.of((GetHistoricVariableInstancesRequest) object);
         }
         return Optional.empty();
     }
 
-    private HttpRequest toHttpRequest(GetHistoricVariableInstancesByProcessInstanceIdsRequest request) {
+    private HttpRequest toHttpRequest(GetHistoricVariableInstancesRequest request) {
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
