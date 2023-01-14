@@ -1,0 +1,23 @@
+[
+  {
+    "id":"7c80cc8f-ef95-11e6-b6e6-34f39ab71d4e",
+    "businessKey":null,
+    "processDefinitionId":"invoice:1:7bf79f13-ef95-11e6-b6e6-34f39ab71d4e",
+    "processDefinitionKey":"invoice",
+    "processDefinitionName":"Invoice Receipt",
+    "processDefinitionVersion":1,
+    "startTime":"2017-02-10T14:33:19.000+0200",
+    "endTime":null,
+    "removalTime": null,
+    "durationInMillis":null,
+    "startUserId":null,
+    "startActivityId":"StartEvent_1",
+    "deleteReason":null,
+    "rootProcessInstanceId": "f8259e5d-ab9d-11e8-8449-e4a7a094a9d6",
+    "superProcessInstanceId":null,
+    "superCaseInstanceId":null,
+    "caseInstanceId":null,
+    "tenantId":null,
+    "state":"ACTIVE"
+  }
+]

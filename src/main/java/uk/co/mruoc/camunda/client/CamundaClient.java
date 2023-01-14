@@ -14,10 +14,10 @@ import uk.co.mruoc.camunda.client.history.process.HistoricProcessInstancesRespon
 import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesByProcessInstanceIdsRequest;
 import uk.co.mruoc.camunda.client.history.variable.HistoricVariableInstancesResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
-import uk.co.mruoc.camunda.client.process.StartProcessRequest;
-import uk.co.mruoc.camunda.client.process.StartProcessResponse;
-import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequest;
-import uk.co.mruoc.camunda.client.processinstance.ProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesByBusinessKeyRequest;
+import uk.co.mruoc.camunda.client.process.get.ProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
+import uk.co.mruoc.camunda.client.process.start.StartProcessResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.camunda.client.task.TasksResponse;
 import uk.co.mruoc.json.JsonConverter;

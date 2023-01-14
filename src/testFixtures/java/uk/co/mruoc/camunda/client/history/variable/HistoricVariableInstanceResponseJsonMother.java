@@ -8,6 +8,6 @@ import uk.co.mruoc.file.FileLoader;
 public class HistoricVariableInstanceResponseJsonMother {
 
     public static String build() {
-        return FileLoader.loadContentFromClasspath("json/historic-variable-instance-response.json");
+        return FileLoader.loadContentFromClasspath("json/historic-variable-instances-response.json");
     }
 }

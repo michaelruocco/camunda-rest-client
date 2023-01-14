@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.processinstance;
+package uk.co.mruoc.camunda.client.process.get;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

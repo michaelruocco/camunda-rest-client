@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.process;
+package uk.co.mruoc.camunda.client.process.start;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import uk.co.mruoc.camunda.client.ObjectMapperFactory;
+import uk.co.mruoc.camunda.client.process.StartProcessRequestJsonMother;
+import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 
 class StartProcessRequestSerdeTest {
     private static final ObjectMapper MAPPER = ObjectMapperFactory.build();

@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.processinstance;
+package uk.co.mruoc.camunda.client.process.get;
 
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
