@@ -12,4 +12,5 @@ public class GetHistoricProcessInstancesByBusinessKeysRequest {
 
     private final Collection<String> processInstanceBusinessKeyIn;
     private final Collection<String> processDefinitionKeyNotIn;
+    private final String processDefinitionKey;
 }
