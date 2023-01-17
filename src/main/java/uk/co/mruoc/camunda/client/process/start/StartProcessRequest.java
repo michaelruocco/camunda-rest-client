@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.process;
+package uk.co.mruoc.camunda.client.process.start;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

@@ -10,11 +10,11 @@ import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequestConverter
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequestConverter;
 import uk.co.mruoc.camunda.client.header.HeaderPopulator;
 import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
-import uk.co.mruoc.camunda.client.history.processinstance.GetHistoricProcessInstancesByBusinessKeysRequestConverter;
-import uk.co.mruoc.camunda.client.history.variableinstance.GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter;
+import uk.co.mruoc.camunda.client.history.process.GetHistoricProcessInstancesRequestConverter;
+import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesRequestConverter;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
-import uk.co.mruoc.camunda.client.process.StartProcessRequestConverter;
-import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequestConverter;
+import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesByBusinessKeyRequestConverter;
+import uk.co.mruoc.camunda.client.process.start.StartProcessRequestConverter;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
 
@@ -41,9 +41,8 @@ public class CompositeRequestConverter implements RequestConverter {
                 new DeliverMessageRequestConverter(baseUri, jsonConverter, headerPopulator),
                 new GetTaskByProcessInstanceBusinessKeyRequestConverter(baseUri, headerPopulator),
                 new GetProcessInstancesByBusinessKeyRequestConverter(baseUri, jsonConverter, headerPopulator),
-                new GetHistoricProcessInstancesByBusinessKeysRequestConverter(baseUri, jsonConverter, headerPopulator),
-                new GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter(
-                        baseUri, jsonConverter, headerPopulator));
+                new GetHistoricProcessInstancesRequestConverter(baseUri, jsonConverter, headerPopulator),
+                new GetHistoricVariableInstancesRequestConverter(baseUri, jsonConverter, headerPopulator));
     }
 
     @Override

@@ -1,6 +1,5 @@
 package uk.co.mruoc.camunda.client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import lombok.Builder;
@@ -10,15 +9,15 @@ import uk.co.mruoc.camunda.client.deploy.create.CreateDeploymentResponse;
 import uk.co.mruoc.camunda.client.deploy.delete.DeleteDeploymentRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsRequest;
 import uk.co.mruoc.camunda.client.deploy.get.GetDeploymentsResponse;
-import uk.co.mruoc.camunda.client.history.processinstance.GetHistoricProcessInstancesByBusinessKeysRequest;
-import uk.co.mruoc.camunda.client.history.processinstance.HistoricProcessInstancesResponse;
-import uk.co.mruoc.camunda.client.history.variableinstance.GetHistoricVariableInstancesByProcessInstanceIdsRequest;
-import uk.co.mruoc.camunda.client.history.variableinstance.HistoricVariableInstancesResponse;
+import uk.co.mruoc.camunda.client.history.process.GetHistoricProcessInstancesRequest;
+import uk.co.mruoc.camunda.client.history.process.HistoricProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesRequest;
+import uk.co.mruoc.camunda.client.history.variable.HistoricVariableInstancesResponse;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
-import uk.co.mruoc.camunda.client.process.StartProcessRequest;
-import uk.co.mruoc.camunda.client.process.StartProcessResponse;
-import uk.co.mruoc.camunda.client.processinstance.GetProcessInstancesByBusinessKeyRequest;
-import uk.co.mruoc.camunda.client.processinstance.ProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesRequest;
+import uk.co.mruoc.camunda.client.process.get.ProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
+import uk.co.mruoc.camunda.client.process.start.StartProcessResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
 import uk.co.mruoc.camunda.client.task.TasksResponse;
 import uk.co.mruoc.json.JsonConverter;
@@ -85,25 +84,22 @@ public class CamundaClient {
         return responseConverter.toTypeOrThrowError(response, TasksResponse.class);
     }
 
-    public ProcessInstancesResponse getProcessInstances(GetProcessInstancesByBusinessKeyRequest request) {
+    public ProcessInstancesResponse getProcessInstances(GetProcessInstancesRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, ProcessInstancesResponse.class);
     }
 
-    public HistoricProcessInstancesResponse getHistoricProcessInstances(
-            GetHistoricProcessInstancesByBusinessKeysRequest request) {
+    public HistoricProcessInstancesResponse getHistoricProcessInstances(GetHistoricProcessInstancesRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, HistoricProcessInstancesResponse.class);
     }
 
-    public <T> HistoricVariableInstancesResponse<T> getHistoricVariableInstances(
-            GetHistoricVariableInstancesByProcessInstanceIdsRequest request) {
+    public HistoricVariableInstancesResponse getHistoricVariableInstances(GetHistoricVariableInstancesRequest request) {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
-        return responseConverter.toTypeOrThrowError(
-                response, new TypeReference<HistoricVariableInstancesResponse<T>>() {});
+        return responseConverter.toTypeOrThrowError(response, HistoricVariableInstancesResponse.class);
     }
 
     private HttpRequest toHttpRequest(Object object) {

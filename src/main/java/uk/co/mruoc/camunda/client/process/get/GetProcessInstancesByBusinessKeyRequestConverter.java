@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.history.variableinstance;
+package uk.co.mruoc.camunda.client.process.get;
 
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
@@ -14,14 +14,13 @@ import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
-public class GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter implements RequestConverter {
+public class GetProcessInstancesByBusinessKeyRequestConverter implements RequestConverter {
 
     private final String baseUri;
     private final JsonConverter jsonConverter;
     private final HeaderPopulator headerPopulator;
 
-    public GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter(
-            String baseUri, JsonConverter jsonConverter) {
+    public GetProcessInstancesByBusinessKeyRequestConverter(String baseUri, JsonConverter jsonConverter) {
         this(baseUri, jsonConverter, defaultHeaderPopulator());
     }
 
@@ -30,14 +29,14 @@ public class GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter im
         return toRequest(object).map(this::toHttpRequest);
     }
 
-    private Optional<GetHistoricVariableInstancesByProcessInstanceIdsRequest> toRequest(Object object) {
-        if (object instanceof GetHistoricVariableInstancesByProcessInstanceIdsRequest) {
-            return Optional.of((GetHistoricVariableInstancesByProcessInstanceIdsRequest) object);
+    private Optional<GetProcessInstancesRequest> toRequest(Object object) {
+        if (object instanceof GetProcessInstancesRequest) {
+            return Optional.of((GetProcessInstancesRequest) object);
         }
         return Optional.empty();
     }
 
-    private HttpRequest toHttpRequest(GetHistoricVariableInstancesByProcessInstanceIdsRequest request) {
+    private HttpRequest toHttpRequest(GetProcessInstancesRequest request) {
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
@@ -49,7 +48,7 @@ public class GetHistoricVariableInstancesByProcessInstanceIdsRequestConverter im
     }
 
     private URI getUri() {
-        String uri = String.format("%s/engine-rest/history/variable-instance", baseUri);
+        String uri = String.format("%s/engine-rest/process-instance", baseUri);
         return URI.create(uri);
     }
 

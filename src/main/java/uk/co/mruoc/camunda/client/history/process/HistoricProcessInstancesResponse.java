@@ -1,16 +1,15 @@
-package uk.co.mruoc.camunda.client.history.processinstance;
+package uk.co.mruoc.camunda.client.history.process;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.Data;
 
 @Data
 public class HistoricProcessInstancesResponse implements Iterable<HistoricProcessInstance> {
 
+    @JsonIgnore
     private final Collection<HistoricProcessInstance> values;
 
     @JsonCreator
@@ -21,11 +20,5 @@ public class HistoricProcessInstancesResponse implements Iterable<HistoricProces
     @Override
     public Iterator<HistoricProcessInstance> iterator() {
         return values.iterator();
-    }
-
-    @JsonIgnore
-    public Map<String, String> getBusinessKeyToProcessInstanceIdMap() {
-        return values.stream()
-                .collect(Collectors.toMap(HistoricProcessInstance::getBusinessKey, HistoricProcessInstance::getId));
     }
 }

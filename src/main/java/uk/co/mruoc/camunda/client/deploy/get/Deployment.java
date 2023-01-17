@@ -21,7 +21,7 @@ public class Deployment {
     private final String name;
     private final String source;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSxx")
     private final OffsetDateTime deploymentTime;
 
     private final String tenantId;

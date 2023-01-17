@@ -4,12 +4,20 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 public class CreateDeploymentResponseSerializer extends StdSerializer<CreateDeploymentResponse> {
 
+    private final transient DateTimeFormatter dateTimeFormatter;
+
     protected CreateDeploymentResponseSerializer() {
+        this(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSxx"));
+    }
+
+    protected CreateDeploymentResponseSerializer(DateTimeFormatter dateTimeFormatter) {
         super(CreateDeploymentResponse.class);
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 
     @Override
@@ -20,7 +28,7 @@ public class CreateDeploymentResponseSerializer extends StdSerializer<CreateDepl
         provider.defaultSerializeField("id", value.getId(), json);
         provider.defaultSerializeField("name", value.getName(), json);
         provider.defaultSerializeField("source", value.getSource(), json);
-        provider.defaultSerializeField("deploymentTime", value.getDeploymentTime(), json);
+        provider.defaultSerializeField("deploymentTime", dateTimeFormatter.format(value.getDeploymentTime()), json);
         provider.defaultSerializeField("tenantId", value.getTenantId(), json);
         write(value.getDeployedProcessDefinitions(), json, provider);
         provider.defaultSerializeField("deployedCaseDefinitions", value.getDeployedCaseDefinitions(), json);
@@ -43,7 +51,7 @@ public class CreateDeploymentResponseSerializer extends StdSerializer<CreateDepl
 
     private void write(ProcessDefinition processDefinition, JsonGenerator json, SerializerProvider provider)
             throws IOException {
-        json.writeFieldName(processDefinition.getId().toString());
+        json.writeFieldName(processDefinition.getId());
         provider.defaultSerializeValue(processDefinition, json);
     }
 }

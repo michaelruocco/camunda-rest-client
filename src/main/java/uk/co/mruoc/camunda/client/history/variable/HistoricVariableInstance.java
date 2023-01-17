@@ -1,7 +1,8 @@
-package uk.co.mruoc.camunda.client.history.variableinstance;
+package uk.co.mruoc.camunda.client.history.variable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.time.OffsetDateTime;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +12,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Data
 @Builder
-@JsonDeserialize(using = HistoricVariableInstanceDeserializer.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class HistoricVariableInstance<T> {
+public class HistoricVariableInstance {
 
     private final String id;
     private final String name;
     private final String type;
-    private final T value;
+    private final Object value;
+    private final ValueInfo valueInfo;
     private final String processDefinitionKey;
     private final String processDefinitionId;
     private final String processInstanceId;
@@ -32,7 +33,12 @@ public class HistoricVariableInstance<T> {
     private final String tenantId;
     private final String errorMessage;
     private final String state;
-    private final String createTime;
-    private final String removalTime;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSxx")
+    private final OffsetDateTime createTime;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSxx")
+    private final OffsetDateTime removalTime;
+
     private final String rootProcessInstanceId;
 }

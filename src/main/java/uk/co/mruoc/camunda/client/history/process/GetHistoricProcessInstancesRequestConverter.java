@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.processinstance;
+package uk.co.mruoc.camunda.client.history.process;
 
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
@@ -14,13 +14,13 @@ import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
-public class GetProcessInstancesByBusinessKeyRequestConverter implements RequestConverter {
+public class GetHistoricProcessInstancesRequestConverter implements RequestConverter {
 
     private final String baseUri;
     private final JsonConverter jsonConverter;
     private final HeaderPopulator headerPopulator;
 
-    public GetProcessInstancesByBusinessKeyRequestConverter(String baseUri, JsonConverter jsonConverter) {
+    public GetHistoricProcessInstancesRequestConverter(String baseUri, JsonConverter jsonConverter) {
         this(baseUri, jsonConverter, defaultHeaderPopulator());
     }
 
@@ -29,14 +29,14 @@ public class GetProcessInstancesByBusinessKeyRequestConverter implements Request
         return toRequest(object).map(this::toHttpRequest);
     }
 
-    private Optional<GetProcessInstancesByBusinessKeyRequest> toRequest(Object object) {
-        if (object instanceof GetProcessInstancesByBusinessKeyRequest) {
-            return Optional.of((GetProcessInstancesByBusinessKeyRequest) object);
+    private Optional<GetHistoricProcessInstancesRequest> toRequest(Object object) {
+        if (object instanceof GetHistoricProcessInstancesRequest) {
+            return Optional.of((GetHistoricProcessInstancesRequest) object);
         }
         return Optional.empty();
     }
 
-    private HttpRequest toHttpRequest(GetProcessInstancesByBusinessKeyRequest request) {
+    private HttpRequest toHttpRequest(GetHistoricProcessInstancesRequest request) {
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
@@ -48,7 +48,7 @@ public class GetProcessInstancesByBusinessKeyRequestConverter implements Request
     }
 
     private URI getUri() {
-        String uri = String.format("%s/engine-rest/process-instance", baseUri);
+        String uri = String.format("%s/engine-rest/history/process-instance", baseUri);
         return URI.create(uri);
     }
 

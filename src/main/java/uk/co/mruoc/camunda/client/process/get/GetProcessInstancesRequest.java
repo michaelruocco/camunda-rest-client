@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.processinstance;
+package uk.co.mruoc.camunda.client.process.get;
 
 import java.util.Collection;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Data
 @Builder
-public class GetProcessInstancesByBusinessKeyRequest {
+public class GetProcessInstancesRequest {
 
     private final String businessKey;
     private final Collection<String> processDefinitionKeyNotIn;

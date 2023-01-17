@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.history.processinstance;
+package uk.co.mruoc.camunda.client.history.variable;
 
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.ACCEPT_NAME;
 import static uk.co.mruoc.camunda.client.header.HeaderConstants.APPLICATION_JSON;
@@ -14,13 +14,13 @@ import uk.co.mruoc.camunda.client.header.NoopHeaderPopulator;
 import uk.co.mruoc.json.JsonConverter;
 
 @RequiredArgsConstructor
-public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implements RequestConverter {
+public class GetHistoricVariableInstancesRequestConverter implements RequestConverter {
 
     private final String baseUri;
     private final JsonConverter jsonConverter;
     private final HeaderPopulator headerPopulator;
 
-    public GetHistoricProcessInstancesByBusinessKeysRequestConverter(String baseUri, JsonConverter jsonConverter) {
+    public GetHistoricVariableInstancesRequestConverter(String baseUri, JsonConverter jsonConverter) {
         this(baseUri, jsonConverter, defaultHeaderPopulator());
     }
 
@@ -29,14 +29,14 @@ public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implement
         return toRequest(object).map(this::toHttpRequest);
     }
 
-    private Optional<GetHistoricProcessInstancesByBusinessKeysRequest> toRequest(Object object) {
-        if (object instanceof GetHistoricProcessInstancesByBusinessKeysRequest) {
-            return Optional.of((GetHistoricProcessInstancesByBusinessKeysRequest) object);
+    private Optional<GetHistoricVariableInstancesRequest> toRequest(Object object) {
+        if (object instanceof GetHistoricVariableInstancesRequest) {
+            return Optional.of((GetHistoricVariableInstancesRequest) object);
         }
         return Optional.empty();
     }
 
-    private HttpRequest toHttpRequest(GetHistoricProcessInstancesByBusinessKeysRequest request) {
+    private HttpRequest toHttpRequest(GetHistoricVariableInstancesRequest request) {
         String body = jsonConverter.toJson(request);
         HttpRequest.Builder builder = HttpRequest.newBuilder();
         headerPopulator.populate(builder);
@@ -48,7 +48,7 @@ public class GetHistoricProcessInstancesByBusinessKeysRequestConverter implement
     }
 
     private URI getUri() {
-        String uri = String.format("%s/engine-rest/history/process-instance", baseUri);
+        String uri = String.format("%s/engine-rest/history/variable-instance", baseUri);
         return URI.create(uri);
     }
 

@@ -3,7 +3,6 @@
 [![Build](https://github.com/michaelruocco/camunda-rest-client/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/camunda-rest-client/actions)
 [![codecov](https://codecov.io/gh/michaelruocco/camunda-rest-client/branch/master/graph/badge.svg?token=FWDNP534O7)](https://codecov.io/gh/michaelruocco/camunda-rest-client)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/272889cf707b4dcb90bf451392530794)](https://www.codacy.com/gh/michaelruocco/camunda-rest-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/camunda-rest-client&amp;utm_campaign=Badge_Grade)
-[![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/camunda-rest-client?branch=master)](https://bettercodehub.com/results/michaelruocco/camunda-rest-client)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_camunda-rest-client&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_camunda-rest-client)
