@@ -48,7 +48,8 @@ public class GetHistoricVariableInstancesRequestConverter implements RequestConv
     }
 
     private URI getUri(boolean deserializeValues) {
-        String uri = String.format("%s/engine-rest/history/variable-instance?deserializeValues=%s", baseUri, deserializeValues);
+        String uri = String.format(
+                "%s/engine-rest/history/variable-instance?deserializeValues=%s", baseUri, deserializeValues);
         return URI.create(uri);
     }
 
