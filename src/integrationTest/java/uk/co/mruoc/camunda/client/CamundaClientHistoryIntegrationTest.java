@@ -30,7 +30,7 @@ class CamundaClientHistoryIntegrationTest {
     @Test
     void shouldGetHistoricProcessInstances() {
         GetHistoricProcessInstancesRequest request = GetHistoricProcessInstancesRequest.builder()
-                .processInstanceBusinessKeyIn(Collections.singleton("key-1"))
+                .processInstanceBusinessKey("key-1")
                 .build();
 
         HistoricProcessInstancesResponse response = client.getHistoricProcessInstances(request);
@@ -45,7 +45,7 @@ class CamundaClientHistoryIntegrationTest {
     void shouldGetHistoricVariableInstances() {
         GetHistoricVariableInstancesRequest request = GetHistoricVariableInstancesRequest.builder()
                 .processInstanceIdIn(Collections.singleton("process-1"))
-                .variableNameIn(Collections.singleton("variable-name-1"))
+                .variableName("variable-name-1")
                 .build();
 
         HistoricVariableInstancesResponse response = client.getHistoricVariableInstances(request);

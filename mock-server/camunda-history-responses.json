@@ -4,9 +4,7 @@
       "method": "POST",
       "path": "/engine-rest/history/process-instance",
       "body": {
-        "processInstanceBusinessKeyIn": [
-          "key-1"
-        ]
+        "processInstanceBusinessKey": "key-1"
       }
     },
     "httpResponse": {
@@ -43,9 +41,7 @@
         "processInstanceIdIn": [
           "process-1"
         ],
-        "variableNameIn": [
-          "variable-name-1"
-        ]
+        "variableName": "variable-name-1"
       }
     },
     "httpResponse": {

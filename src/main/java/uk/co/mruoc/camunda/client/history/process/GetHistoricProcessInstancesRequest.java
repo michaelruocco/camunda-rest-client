@@ -12,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 public class GetHistoricProcessInstancesRequest {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private final String processInstanceBusinessKey;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final Collection<String> processInstanceBusinessKeyIn;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
