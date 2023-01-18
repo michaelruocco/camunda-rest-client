@@ -42,13 +42,13 @@ public class GetHistoricVariableInstancesRequestConverter implements RequestConv
         headerPopulator.populate(builder);
         return builder.header(CONTENT_TYPE_NAME, APPLICATION_JSON)
                 .header(ACCEPT_NAME, APPLICATION_JSON)
-                .uri(getUri())
+                .uri(getUri(request.isDeserializeValues()))
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
     }
 
-    private URI getUri() {
-        String uri = String.format("%s/engine-rest/history/variable-instance", baseUri);
+    private URI getUri(boolean deserializeValues) {
+        String uri = String.format("%s/engine-rest/history/variable-instance?deserializeValues=%s", baseUri, deserializeValues);
         return URI.create(uri);
     }
 
