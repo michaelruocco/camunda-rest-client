@@ -19,5 +19,8 @@ public class GetHistoricVariableInstancesRequest {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String variableName;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private final Collection<String> variableNameIn;
+
     private final boolean deserializeValues;
 }
