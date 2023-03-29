@@ -12,4 +12,5 @@ public class GetProcessInstancesRequest {
 
     private final String businessKey;
     private final Collection<String> processDefinitionKeyNotIn;
+    private final String processDefinitionKey;
 }

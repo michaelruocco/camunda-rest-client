@@ -16,4 +16,6 @@ public class GetHistoricProcessInstancesRequest {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private final Collection<String> processDefinitionKeyNotIn;
+
+    private final String processDefinitionKey;
 }
