@@ -1,14 +1,18 @@
 {
   "inputString": {
-    "type": "string",
+    "type": "String",
     "value": "hi joe bloggs"
   },
   "inputLong": {
-    "type": "long",
+    "type": "Long",
     "value": 0
   },
   "inputJson": {
-    "type": "json",
+    "type": "Json",
     "value": "{\"data\": {\"field\": \"value\"}}"
+  },
+  "inputBoolean": {
+    "type": "Boolean",
+    "value": true
   }
 }

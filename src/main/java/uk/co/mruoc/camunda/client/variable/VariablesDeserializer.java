@@ -44,6 +44,8 @@ public class VariablesDeserializer extends StdDeserializer<Variables> {
                 return new StringVariable(name, value.asText());
             case "long":
                 return new LongVariable(name, value.asLong());
+            case "boolean":
+                return new BooleanVariable(name, value.asBoolean());
             default:
                 throw new VariableTypeUnsupportedException(type);
         }

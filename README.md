@@ -19,12 +19,11 @@ So far it only supports a small number of the available operations but more supp
 
 ```gradle
 // cleans build directories
-// prints currentVersion
 // checks dependency versions
 // checks for gradle issues
 // formats code
 // builds code
 // runs unit tests
 // runs integration tests
-./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build integrationTest
+./gradlew clean dependencyUpdates lintGradle spotlessApply build integrationTest
 ```
