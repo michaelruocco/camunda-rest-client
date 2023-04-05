@@ -22,7 +22,7 @@ ext {
     jacksonVersion = "2.14.2"
 
     junitVersion = "5.9.2"
-    testContainersVersion = "1.17.6"
+    testContainersVersion = "1.18.0"
 }
 
 scmVersion {
