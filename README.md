@@ -25,5 +25,5 @@ So far it only supports a small number of the available operations but more supp
 // builds code
 // runs unit tests
 // runs integration tests
-./gradlew clean dependencyUpdates lintGradle spotlessApply build integrationTest
+./gradlew clean dependencyUpdates criticalLintGradle spotlessApply build integrationTest
 ```

@@ -43,7 +43,7 @@ jobs:
         run: ./gradlew dependencyUpdates
 
       - name: Build
-        run: ./gradlew clean spotlessCheck assemble lintGradle 
+        run: ./gradlew clean spotlessCheck assemble criticalLintGradle
 
       - name: Test
         run: ./gradlew test
