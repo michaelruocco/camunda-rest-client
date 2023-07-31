@@ -5,23 +5,26 @@ plugins {
     id "maven-publish"
     id "signing"
     id "io.github.gradle-nexus.publish-plugin" version "1.3.0"
-    id "com.diffplug.spotless" version "6.17.0"
-    id "com.github.ben-manes.versions" version "0.46.0"
-    id "pl.allegro.tech.build.axion-release" version "1.15.0"
-    id "org.sonarqube" version "4.0.0.2929"
+    id "com.diffplug.spotless" version "6.20.0"
+    id "com.github.ben-manes.versions" version "0.47.0"
+    id "pl.allegro.tech.build.axion-release" version "1.15.4"
+    id "org.sonarqube" version "4.3.0.3225"
     id "com.adarshr.test-logger" version "3.2.0"
-    id "nebula.lint" version "18.0.3"
+    id "nebula.lint" version "18.1.0"
 }
 
 group "com.github.michaelruocco"
 
 ext {
     slf4jVersion = "2.0.7"
-    lombokVersion = "1.18.26"
-    jacksonVersion = "2.14.2"
+    lombokVersion = "1.18.28"
+    jacksonVersion = "2.15.2"
 
-    junitVersion = "5.9.2"
-    testContainersVersion = "1.18.0"
+    junitVersion = "5.10.0"
+    jsonUnitAssertJVersion = "3.0.0"
+    testContainersVersion = "1.18.3"
+    assertJVersion = "3.24.2"
+    mockitoVersion = "5.4.0"
 }
 
 scmVersion {
@@ -83,9 +86,9 @@ testing {
                 runtimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
                 runtimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
                 implementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-                implementation "org.assertj:assertj-core:3.24.2"
-                implementation "net.javacrumbs.json-unit:json-unit-assertj:2.37.0"
-                implementation "org.mockito:mockito-core:5.2.0"
+                implementation "org.assertj:assertj-core:${assertJVersion}"
+                implementation "net.javacrumbs.json-unit:json-unit-assertj:${jsonUnitAssertJVersion}"
+                implementation "org.mockito:mockito-core:${mockitoVersion}"
             }
         }
         integrationTest {
@@ -93,9 +96,9 @@ testing {
                 runtimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
                 runtimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
                 implementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-                implementation "org.assertj:assertj-core:3.24.2"
-                implementation "net.javacrumbs.json-unit:json-unit-assertj:2.37.0"
-                implementation "org.mockito:mockito-core:5.2.0"
+                implementation "org.assertj:assertj-core:${assertJVersion}"
+                implementation "net.javacrumbs.json-unit:json-unit-assertj:${jsonUnitAssertJVersion}"
+                implementation "org.mockito:mockito-core:${mockitoVersion}"
 
                 compileOnly "org.projectlombok:lombok:${lombokVersion}"
                 annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
