@@ -26,6 +26,8 @@ import uk.co.mruoc.camunda.client.process.StartProcessRequestMother;
 import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesRequest;
 import uk.co.mruoc.camunda.client.process.get.ProcessInstance;
 import uk.co.mruoc.camunda.client.process.get.ProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.process.get.variable.GetVariableInstanceRequest;
+import uk.co.mruoc.camunda.client.process.get.variable.VariableInstanceResponse;
 import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.start.StartProcessResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
@@ -64,6 +66,23 @@ class CamundaClientIntegrationTest {
         StartProcessResponse response = client.startProcess(request);
 
         assertThat(response.getDefinitionId()).isNotNull();
+    }
+
+    @Test
+    void shouldGetVariableInstanceForRunningProcess() {
+        CreateDeploymentResponse createResponse = givenBpmnIsDeployed(buildMessageDemoScriptDeploymentRequest());
+        String processDefinitionKey = createResponse.getFirstDeployedProcessDefinitionKey();
+        StartProcessRequest startRequest = StartProcessRequestMother.withDefinitionProcessKey(processDefinitionKey);
+        StartProcessResponse startResponse = client.startProcess(startRequest);
+        GetVariableInstanceRequest variableRequest = GetVariableInstanceRequest.builder()
+                .processInstanceId(startResponse.getId())
+                .variableName("inputString")
+                .build();
+
+        VariableInstanceResponse variableResponse = client.getVariableInstance(variableRequest);
+
+        assertThat(variableResponse.getType()).isEqualTo("String");
+        assertThat(variableResponse.getValue()).isEqualTo("hi joe bloggs");
     }
 
     @Test

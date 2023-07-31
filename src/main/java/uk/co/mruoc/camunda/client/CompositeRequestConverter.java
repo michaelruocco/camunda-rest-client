@@ -14,6 +14,7 @@ import uk.co.mruoc.camunda.client.history.process.GetHistoricProcessInstancesReq
 import uk.co.mruoc.camunda.client.history.variable.GetHistoricVariableInstancesRequestConverter;
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequestConverter;
 import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesByBusinessKeyRequestConverter;
+import uk.co.mruoc.camunda.client.process.get.variable.GetVariableInstanceRequestConverter;
 import uk.co.mruoc.camunda.client.process.start.StartProcessRequestConverter;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequestConverter;
 import uk.co.mruoc.json.JsonConverter;
@@ -42,7 +43,8 @@ public class CompositeRequestConverter implements RequestConverter {
                 new GetTaskByProcessInstanceBusinessKeyRequestConverter(baseUri, headerPopulator),
                 new GetProcessInstancesByBusinessKeyRequestConverter(baseUri, jsonConverter, headerPopulator),
                 new GetHistoricProcessInstancesRequestConverter(baseUri, jsonConverter, headerPopulator),
-                new GetHistoricVariableInstancesRequestConverter(baseUri, jsonConverter, headerPopulator));
+                new GetHistoricVariableInstancesRequestConverter(baseUri, jsonConverter, headerPopulator),
+                new GetVariableInstanceRequestConverter(baseUri, jsonConverter, headerPopulator));
     }
 
     @Override

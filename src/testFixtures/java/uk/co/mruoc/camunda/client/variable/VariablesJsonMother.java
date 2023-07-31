@@ -1,4 +1,4 @@
-package uk.co.mruoc.camunda.client.process;
+package uk.co.mruoc.camunda.client.variable;
 
 import static uk.co.mruoc.file.FileLoader.loadContentFromClasspath;
 

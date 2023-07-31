@@ -16,6 +16,8 @@ import uk.co.mruoc.camunda.client.history.variable.HistoricVariableInstancesResp
 import uk.co.mruoc.camunda.client.message.DeliverMessageRequest;
 import uk.co.mruoc.camunda.client.process.get.GetProcessInstancesRequest;
 import uk.co.mruoc.camunda.client.process.get.ProcessInstancesResponse;
+import uk.co.mruoc.camunda.client.process.get.variable.GetVariableInstanceRequest;
+import uk.co.mruoc.camunda.client.process.get.variable.VariableInstanceResponse;
 import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
 import uk.co.mruoc.camunda.client.process.start.StartProcessResponse;
 import uk.co.mruoc.camunda.client.task.GetTaskByProcessInstanceBusinessKeyRequest;
@@ -88,6 +90,12 @@ public class CamundaClient {
         HttpRequest httpRequest = toHttpRequest(request);
         HttpResponse<String> response = executor.execute(httpRequest);
         return responseConverter.toTypeOrThrowError(response, ProcessInstancesResponse.class);
+    }
+
+    public VariableInstanceResponse getVariableInstance(GetVariableInstanceRequest request) {
+        HttpRequest httpRequest = toHttpRequest(request);
+        HttpResponse<String> response = executor.execute(httpRequest);
+        return responseConverter.toTypeOrThrowError(response, VariableInstanceResponse.class);
     }
 
     public HistoricProcessInstancesResponse getHistoricProcessInstances(GetHistoricProcessInstancesRequest request) {

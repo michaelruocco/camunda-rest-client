@@ -3,6 +3,7 @@ package uk.co.mruoc.camunda.client.process;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import uk.co.mruoc.camunda.client.process.start.StartProcessRequest;
+import uk.co.mruoc.camunda.client.variable.VariablesMother;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StartProcessRequestMother {

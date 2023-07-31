@@ -1,12 +1,7 @@
-package uk.co.mruoc.camunda.client.process;
+package uk.co.mruoc.camunda.client.variable;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import uk.co.mruoc.camunda.client.variable.BooleanVariable;
-import uk.co.mruoc.camunda.client.variable.JsonVariable;
-import uk.co.mruoc.camunda.client.variable.LongVariable;
-import uk.co.mruoc.camunda.client.variable.StringVariable;
-import uk.co.mruoc.camunda.client.variable.Variables;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class VariablesMother {

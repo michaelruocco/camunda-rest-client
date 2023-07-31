@@ -8,8 +8,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import uk.co.mruoc.camunda.client.ObjectMapperFactory;
-import uk.co.mruoc.camunda.client.process.VariablesJsonMother;
-import uk.co.mruoc.camunda.client.process.VariablesMother;
 
 class VariablesSerdeTest {
     private static final ObjectMapper MAPPER = ObjectMapperFactory.build();
