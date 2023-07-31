@@ -30,8 +30,8 @@ public class GetVariableInstanceRequestConverter implements RequestConverter {
     }
 
     private Optional<GetVariableInstanceRequest> toRequest(Object object) {
-        if (object instanceof GetVariableInstanceRequest) {
-            return Optional.of((GetVariableInstanceRequest) object);
+        if (object instanceof GetVariableInstanceRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

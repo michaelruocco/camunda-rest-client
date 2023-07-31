@@ -27,8 +27,8 @@ public class GetTaskByProcessInstanceBusinessKeyRequestConverter implements Requ
     }
 
     private Optional<GetTaskByProcessInstanceBusinessKeyRequest> toRequest(Object object) {
-        if (object instanceof GetTaskByProcessInstanceBusinessKeyRequest) {
-            return Optional.of((GetTaskByProcessInstanceBusinessKeyRequest) object);
+        if (object instanceof GetTaskByProcessInstanceBusinessKeyRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

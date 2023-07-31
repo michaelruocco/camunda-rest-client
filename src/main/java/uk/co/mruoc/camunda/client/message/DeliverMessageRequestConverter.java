@@ -30,8 +30,8 @@ public class DeliverMessageRequestConverter implements RequestConverter {
     }
 
     private Optional<DeliverMessageRequest> toRequest(Object object) {
-        if (object instanceof DeliverMessageRequest) {
-            return Optional.of((DeliverMessageRequest) object);
+        if (object instanceof DeliverMessageRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

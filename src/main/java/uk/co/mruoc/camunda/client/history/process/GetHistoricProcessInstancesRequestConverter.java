@@ -30,8 +30,8 @@ public class GetHistoricProcessInstancesRequestConverter implements RequestConve
     }
 
     private Optional<GetHistoricProcessInstancesRequest> toRequest(Object object) {
-        if (object instanceof GetHistoricProcessInstancesRequest) {
-            return Optional.of((GetHistoricProcessInstancesRequest) object);
+        if (object instanceof GetHistoricProcessInstancesRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

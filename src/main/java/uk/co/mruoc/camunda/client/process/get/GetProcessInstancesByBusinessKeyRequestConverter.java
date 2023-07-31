@@ -30,8 +30,8 @@ public class GetProcessInstancesByBusinessKeyRequestConverter implements Request
     }
 
     private Optional<GetProcessInstancesRequest> toRequest(Object object) {
-        if (object instanceof GetProcessInstancesRequest) {
-            return Optional.of((GetProcessInstancesRequest) object);
+        if (object instanceof GetProcessInstancesRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

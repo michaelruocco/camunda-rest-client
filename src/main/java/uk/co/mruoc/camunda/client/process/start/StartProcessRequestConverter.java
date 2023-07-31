@@ -30,8 +30,8 @@ public class StartProcessRequestConverter implements RequestConverter {
     }
 
     private Optional<StartProcessRequest> toRequest(Object object) {
-        if (object instanceof StartProcessRequest) {
-            return Optional.of((StartProcessRequest) object);
+        if (object instanceof StartProcessRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

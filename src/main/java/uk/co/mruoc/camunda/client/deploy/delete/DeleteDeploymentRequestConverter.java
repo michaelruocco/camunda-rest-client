@@ -24,8 +24,8 @@ public class DeleteDeploymentRequestConverter implements RequestConverter {
     }
 
     private Optional<DeleteDeploymentRequest> toRequest(Object object) {
-        if (object instanceof DeleteDeploymentRequest) {
-            return Optional.of((DeleteDeploymentRequest) object);
+        if (object instanceof DeleteDeploymentRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }

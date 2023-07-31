@@ -27,8 +27,8 @@ public class GetDeploymentsRequestConverter implements RequestConverter {
     }
 
     private Optional<GetDeploymentsRequest> toRequest(Object object) {
-        if (object instanceof GetDeploymentsRequest) {
-            return Optional.of((GetDeploymentsRequest) object);
+        if (object instanceof GetDeploymentsRequest request) {
+            return Optional.of(request);
         }
         return Optional.empty();
     }
