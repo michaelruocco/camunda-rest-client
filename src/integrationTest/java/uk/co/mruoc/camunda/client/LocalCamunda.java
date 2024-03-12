@@ -11,7 +11,7 @@ public class LocalCamunda extends GenericContainer<LocalCamunda> {
     private static final int PORT = 8080;
 
     public LocalCamunda() {
-        super("camunda/camunda-bpm-platform");
+        super("camunda/camunda-bpm-platform:7.18.0");
         withExposedPorts(PORT);
         withStartupTimeout(Duration.ofMinutes(1));
         withLogConsumer(this::logInfo);
